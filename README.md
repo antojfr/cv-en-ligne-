@@ -59,3 +59,11 @@ Chaque lien affiche en haut de page « Pour <entreprise> » avec un message adap
 ## Compteur de visites (GoatCounter)
 
 Le site compte les visites sur https://antojfr.goatcounter.com (sans cookies). Chaque lien d'entreprise apparaît comme une page `/for/<id>`, et les actions comme des événements : `contact` (fiche enregistrée), `cv`, `github`, `linkedin`, `email`, suivis du lien d'origine (par exemple `contact/for/abc`). Le code du compte se règle dans `data.js` (`goatcounter`).
+
+## Fiche contact (.vcf)
+
+Le bouton « Ajouter à mes contacts » ouvre directement `contact/fr/Antonin-Jaffre.vcf` (ou `contact/en/…`) : sur iPhone, la fiche « Nouveau contact » s'affiche avec la photo. Ces fichiers sont générés à partir de `data.js` : après avoir changé ton nom, email, téléphone, titre ou photo, relance
+
+```bash
+node scripts/build-vcard.js
+```

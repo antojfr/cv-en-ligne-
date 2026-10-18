@@ -12,6 +12,8 @@ const PROFILE = {
   // Photo carrée dans assets/. Si elle manque, tes initiales s'affichent.
   photo: "assets/photo.jpg",
   contactPhoto: "assets/contact.jpg", // petite version pour la fiche contact
+  // Fiches contact générées par « node scripts/build-vcard.js » (à relancer si tu changes tes infos)
+  vcard: { fr: "contact/fr/Antonin-Jaffre.vcf", en: "contact/en/Antonin-Jaffre.vcf" },
 
   email: "antoninjaffre@gmail.com",
   phone: "+33 6 29 22 47 31", // ajouté uniquement à la fiche contact (laisser vide pour le retirer)
