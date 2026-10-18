@@ -36,7 +36,6 @@ const UI = {
     ctaButton: "Écrire un email",
     copy: "Copier",
     copied: "Adresse copiée",
-    toastContact: "Fiche contact téléchargée",
     mailSubject: (ev) => `Rencontre au ${ev}`,
     mailBody: (name, ev) => `Bonjour ${name},\n\nNous nous sommes rencontrés au ${ev}. `,
   },
@@ -76,7 +75,6 @@ const UI = {
     ctaButton: "Send an email",
     copy: "Copy",
     copied: "Address copied",
-    toastContact: "Contact card downloaded",
     mailSubject: (ev) => `We met at ${ev}`,
     mailBody: (name, ev) => `Hi ${name},\n\nWe met at ${ev}. `,
   },
@@ -188,6 +186,7 @@ function render() {
     document.title = `CV ${fullName}, ${TARGET.name}`;
   }
 
+  $("btn-contact").href = t(P.vcard);
   $("btn-cv").href = t(P.cvPdf);
   $("btn-cv").target = "_blank";
   $("btn-mail-cta").href = mailto();
@@ -254,68 +253,15 @@ function renderTicker() {
   const items = (P.ticker || [])
     .map((x) => `<span class="tick"><b>${esc(x.sym)}</b> <span class="${/^[-−]/.test(x.val) ? "down" : "up"}">${esc(x.val)}</span></span>`)
     .join("");
-  $("ticker").innerHTML = items + items; // dupliqué pour une boucle continue
+  // Deux moitiés identiques (boucle continue), chacune assez longue pour un grand écran
+  const half = items.repeat(3);
+  $("ticker").innerHTML = half + half;
 }
 
 function setLang(l) {
   lang = l === "en" ? "en" : "fr";
   try { localStorage.setItem("lang", lang); } catch (e) {}
   render();
-}
-
-// ---------- Carte de contact (vCard) ----------
-// Photo chargée à l'avance pour que le clic reste instantané (exigé par iOS)
-let contactPhoto = "";
-function loadContactPhoto() {
-  fetch(P.contactPhoto || P.photo)
-    .then((r) => (r.ok ? r.blob() : Promise.reject()))
-    .then((b) => new Promise((res) => {
-      const fr = new FileReader();
-      fr.onload = () => res(String(fr.result).split(",")[1] || "");
-      fr.readAsDataURL(b);
-    }))
-    .then((b64) => { contactPhoto = b64; })
-    .catch(() => {});
-}
-
-// Les lignes vCard longues sont repliées à 75 caractères
-function fold(line) {
-  return line.match(/.{1,74}/g).join("\r\n ");
-}
-
-function vcard() {
-  const lines = [
-    "BEGIN:VCARD",
-    "VERSION:3.0",
-    `N:${P.lastName};${P.firstName};;;`,
-    `FN:${fullName}`,
-    `TITLE:${t(P.title)}`,
-    `EMAIL;TYPE=INTERNET:${P.email}`,
-    P.phone ? `TEL;TYPE=CELL:${P.phone}` : "",
-    P.linkedin ? `URL;TYPE=LinkedIn:${P.linkedin}` : "",
-    P.github ? `URL;TYPE=GitHub:${P.github}` : "",
-    `URL:${location.href.split(/[?#]/)[0]}`,
-    "ORG:Mines Alès, Mines Saint-Étienne",
-    `NOTE:${t(P.lookingFor)}`,
-    contactPhoto ? fold(`PHOTO;ENCODING=b;TYPE=JPEG:${contactPhoto}`) : "",
-    "END:VCARD",
-  ];
-  return lines.filter(Boolean).join("\r\n");
-}
-
-function downloadContact(e) {
-  e.preventDefault();
-  const blob = new Blob([vcard()], { type: "text/vcard;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `${P.firstName}-${P.lastName}.vcf`;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 2000);
-  toast(UI[lang].toastContact);
-  track("contact");
 }
 
 function copyEmail() {
@@ -513,13 +459,12 @@ function setupChallenge() {
   if (P.linkedin) $("lnk-linkedin").href = P.linkedin; else $("lnk-linkedin").hidden = true;
   if (P.github) $("lnk-github").href = P.github; else $("lnk-github").hidden = true;
 
-  $("btn-contact").addEventListener("click", downloadContact);
+  $("btn-contact").addEventListener("click", () => track("contact"));
   $("btn-cv").addEventListener("click", () => track("cv"));
   $("lnk-github").addEventListener("click", () => track("github"));
   $("lnk-linkedin").addEventListener("click", () => track("linkedin"));
   $("lnk-mail").addEventListener("click", () => track("email"));
   loadCounter();
-  loadContactPhoto();
   $("btn-copy").addEventListener("click", copyEmail);
   setupChallenge();
   watchSections();

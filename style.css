@@ -57,6 +57,12 @@ h1, h2, h3 { margin: 0; font-weight: inherit; }
 
 :focus-visible { outline: 2px solid var(--pos); outline-offset: 2px; }
 
+/* ---------- Mise en page ---------- */
+/* Téléphone : une seule colonne, l'encadré entreprise passe en premier */
+.layout { display: flex; flex-direction: column; }
+.side, .content { display: contents; }
+.for { order: -1; }
+
 /* ---------- Bandeau défilant ---------- */
 .ticker {
   overflow: hidden;
@@ -65,7 +71,7 @@ h1, h2, h3 { margin: 0; font-weight: inherit; }
   background: var(--raise);
 }
 
-.ticker-track { display: flex; width: max-content; animation: scroll 40s linear infinite; }
+.ticker-track { display: flex; width: max-content; animation: scroll 120s linear infinite; }
 
 .tick {
   padding: 7px 16px;
@@ -89,6 +95,7 @@ h1, h2, h3 { margin: 0; font-weight: inherit; }
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   padding-block: 14px;
   font-family: var(--mono);
   font-size: 12px;
@@ -173,12 +180,13 @@ h1 {
   font-stretch: 68%;
   font-weight: 850;
   font-size: clamp(2.9rem, 15vw, 4.6rem);
-  line-height: 0.88;
+  line-height: 0.9;
   text-transform: uppercase;
   letter-spacing: -0.01em;
 }
 
 h1 span { display: block; }
+h1 span + span { margin-top: 0.12em; } /* place pour l'accent du É */
 
 .title {
   margin-top: 12px;
@@ -318,6 +326,8 @@ svg.fill { fill: currentColor; stroke: none; }
 }
 
 .sections::-webkit-scrollbar { display: none; }
+/* Fondu à droite : indique que le menu défile */
+.sections { -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent); mask-image: linear-gradient(90deg, #000 88%, transparent); }
 
 .sections a {
   flex: none;
@@ -545,8 +555,77 @@ footer {
 .status { animation-delay: 0.16s; }
 .actions { animation-delay: 0.22s; }
 
+@media (max-width: 360px) {
+  .bar-inner { font-size: 11px; }
+  .lang button { padding: 6px 6px; }
+}
+
 @media (min-width: 560px) {
   .portrait { width: 132px; }
+}
+
+/* ---------- Ordinateur : carte d'identité à gauche, CV à droite ---------- */
+@media (min-width: 1080px) {
+  .wrap { max-width: 1200px; }
+  html { scroll-padding-top: 24px; }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 360px minmax(0, 1fr);
+    column-gap: 88px;
+    align-items: start;
+  }
+
+  .content { display: block; }
+  .side {
+    display: block;
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+    padding-block: 4px 32px;
+  }
+
+  .side::-webkit-scrollbar { display: none; }
+  .content { max-width: 700px; }
+  .content > .block:first-of-type { padding-top: 8px; }
+
+  .hero { padding-top: 4px; }
+  .portrait { width: 100px; }
+  h1 { font-size: 3.6rem; }
+
+  .for { margin: 4px 0 12px; }
+
+  .sections {
+    position: static;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 28px;
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    font-size: 12px;
+  }
+
+  .sections { -webkit-mask-image: none; mask-image: none; }
+  .sections a { padding: 7px 0 7px 14px; border-left: 1px solid var(--line); }
+  .sections a:hover { color: var(--fg); }
+  .sections a.active { box-shadow: none; border-left: 2px solid var(--pos); padding-left: 13px; }
+
+  .chart { max-width: 560px; }
+  .ch-lead { font-size: 1.3rem; }
+}
+
+/* ---------- Impression : CV lisible sur papier ---------- */
+@media print {
+  :root { --ink: #fff; --raise: #fff; --line: #ccc; --fg: #111; --dim: #444; --amber: #8a5a00; --pos: #0a6b38; }
+  .ticker, .bar, .actions, .sections, .for, .challenge, .contact .btn, .copy, .toast { display: none !important; }
+  .side { display: contents; }
+  .layout { display: block; }
+  .block { break-inside: avoid-page; padding-block: 14px; }
+  .entry { break-inside: avoid; }
+  .hero-text > *, .portrait, .status, .actions { animation: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
