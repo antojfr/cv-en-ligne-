@@ -2,6 +2,8 @@
  * Liens personnalisés par entreprise : https://antojfr.github.io/cv-en-ligne-/?for=<id>
  * - "focus" : projet affiché en premier (sp500, credit, power, nfc)
  * - "msg" : phrase affichée en haut de page, sous « Pour <nom> »
+ * - "domain" : site de l'entreprise, sert à afficher son logo
+ * - "logo" (optionnel) : fichier dans assets/logos/, prioritaire sur le logo du site
  * Ajouter une entreprise = ajouter une ligne ici.
  */
 const SP500 = {
@@ -19,32 +21,32 @@ const POWER = {
 
 const TARGETS = [
   // À voir absolument
-  { id: "abc", name: "ABC Arbitrage", focus: "sp500", msg: SP500 },
-  { id: "sg", name: "Société Générale", focus: "sp500", msg: SP500 },
+  { id: "abc", domain: "abc-arbitrage.com", name: "ABC Arbitrage", focus: "sp500", msg: SP500 },
+  { id: "sg", domain: "societegenerale.com", name: "Société Générale", focus: "sp500", msg: SP500 },
   {
-    id: "murex", name: "Murex", focus: "sp500",
+    id: "murex", domain: "murex.com", name: "Murex", focus: "sp500",
     msg: {
       fr: "Pour vos équipes pricing et risque : le moteur de pricing que j'ai construit chez Thales, et mon backtest S&P 500 testé hors échantillon.",
       en: "For your pricing and risk teams: the pricing engine I built at Thales, and my S&P 500 backtest tested out of sample.",
     },
   },
-  { id: "neoen", name: "Neoen", focus: "power", msg: POWER },
-  { id: "nexialog", name: "Nexialog Consulting", focus: "credit", msg: CREDIT },
-  { id: "fincley", name: "Fincley Consulting", focus: "sp500", msg: SP500 },
+  { id: "neoen", domain: "neoen.com", name: "Neoen", focus: "power", msg: POWER },
+  { id: "nexialog", domain: "nexialog.com", name: "Nexialog Consulting", focus: "credit", msg: CREDIT },
+  { id: "fincley", domain: "fincley.com", name: "Fincley Consulting", focus: "sp500", msg: SP500 },
 
   // Intéressant
-  { id: "bpce", name: "Groupe BPCE", focus: "credit", msg: CREDIT },
-  { id: "totalenergies", name: "TotalEnergies", focus: "power", msg: POWER },
-  { id: "exiom", name: "Exiom Partners", focus: "credit", msg: CREDIT },
-  { id: "kpmg", name: "KPMG", focus: "credit", msg: CREDIT },
-  { id: "ey", name: "EY", focus: "credit", msg: CREDIT },
-  { id: "wavestone", name: "Wavestone", focus: "sp500", msg: SP500 },
-  { id: "sia", name: "Sia", focus: "credit", msg: CREDIT },
-  { id: "accenture", name: "Accenture", focus: "sp500", msg: SP500 },
-  { id: "talan", name: "Talan", focus: "sp500", msg: SP500 },
-  { id: "soprasterianext", name: "Sopra Steria Next", focus: "credit", msg: CREDIT },
+  { id: "bpce", domain: "groupebpce.com", name: "Groupe BPCE", focus: "credit", msg: CREDIT },
+  { id: "totalenergies", domain: "totalenergies.com", name: "TotalEnergies", focus: "power", msg: POWER },
+  { id: "exiom", domain: "exiom-partners.com", name: "Exiom Partners", focus: "credit", msg: CREDIT },
+  { id: "kpmg", domain: "kpmg.com", name: "KPMG", focus: "credit", msg: CREDIT },
+  { id: "ey", domain: "ey.com", name: "EY", focus: "credit", msg: CREDIT },
+  { id: "wavestone", domain: "wavestone.com", name: "Wavestone", focus: "sp500", msg: SP500 },
+  { id: "sia", domain: "sia-partners.com", name: "Sia", focus: "credit", msg: CREDIT },
+  { id: "accenture", domain: "accenture.com", logo: "assets/logos/accenture.svg", name: "Accenture", focus: "sp500", msg: SP500 },
+  { id: "talan", domain: "talan.com", name: "Talan", focus: "sp500", msg: SP500 },
+  { id: "soprasterianext", domain: "soprasteria.com", name: "Sopra Steria Next", focus: "credit", msg: CREDIT },
   {
-    id: "metravib", name: "Metravib Defence", focus: "sp500",
+    id: "metravib", domain: "metravib-defence.com", name: "Metravib Defence", focus: "sp500",
     msg: {
       fr: "Côté data science : mes modèles de prévision sur séries temporelles, chez Thales et sur le S&P 500, avec une validation qui respecte la chronologie.",
       en: "On data science: my forecasting models on time series, at Thales and on the S&P 500, with validation that respects time order.",
