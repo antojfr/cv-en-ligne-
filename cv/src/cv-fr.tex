@@ -1,0 +1,136 @@
+% Traduction française de cv-en.tex (même gabarit, même mise en page).
+\documentclass[a4paper,10pt]{article}
+
+% --- PACKAGES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\frenchsetup{StandardLists=true}
+\usepackage[left=1.15cm,right=1.15cm,top=0.95cm,bottom=0.95cm]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{qrcode}
+
+% --- STYLE ---
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\linespread{0.95}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,
+    urlcolor=black,
+}
+
+\titleformat{\section}{\large\scshape\bfseries}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{8pt}{3pt}
+
+% --- CUSTOM COMMANDS ---
+% #4 = URL encodée dans le QR code (GitHub ou portfolio)
+\newcommand{\makeheader}[4]{
+    \noindent
+    \begin{minipage}[c]{0.09\textwidth}~\end{minipage}%
+    \hfill
+    \begin{minipage}[c]{0.74\textwidth}
+        \centering
+        {\huge \textbf{\textsc{#1}}} \\ \vspace{6pt}
+        #2 \\ \vspace{4pt}
+        \small{\textit{#3}}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[c]{0.15\textwidth}
+        \raggedleft
+        \qrcode[height=2.1cm]{#4} \\ \vspace{2pt}
+        \tiny\textsc{GitHub}
+    \end{minipage}
+    \vspace{4pt}
+}
+
+\newcommand{\cventry}[4]{
+    \vspace{2pt}
+    \noindent \textbf{#1} \hfill #2 \\
+    \noindent \textit{#3} \hfill \textbf{#4}
+}
+
+\newenvironment{cvbullets}{
+    \begin{itemize}[itemsep=1.5pt, topsep=2pt, leftmargin=1.1em, label=\tiny$\bullet$]
+}{
+    \end{itemize} \vspace{1pt}
+}
+
+\begin{document}
+
+% 1. HEADER
+\makeheader{Antonin Jaffré}
+    {+33 6 29 22 47 31 $\cdot$ \href{mailto:antoninjaffre@gmail.com}{antoninjaffre@gmail.com} $\cdot$ \href{https://www.linkedin.com/in/antonin-jaffr\%C3\%A9}{LinkedIn} $\cdot$ \href{https://github.com/antojfr}{GitHub}}
+    {Recherche un stage de 6~mois en marchés financiers et modélisation quantitative, dès mars 2027}
+    {https://github.com/antojfr}
+
+% 2. EDUCATION
+\section{Formation}
+
+\cventry{École des Mines de Saint-Étienne}{Saint-Étienne, France}{Master Mathématiques appliquées, statistique $\cdot$ Parcours Mathématiques en action (MAEA)}{2026 - 2027}
+\begin{cvbullets}
+    \item Diplôme national de master \textbf{co-accrédité avec l'École Centrale de Lyon et l'ENS de Lyon}.
+    \item Filière \textit{Mathématiques et Machine Learning pour l'Ingénierie} : probabilités et processus stochastiques, méthodes de Monte-Carlo, optimisation, apprentissage statistique, calcul haute performance.
+\end{cvbullets}
+
+\cventry{École des Mines d'Alès}{Alès, France}{Diplôme d'Ingénieur (grade de master, 5~ans) $\cdot$ IA \& Data Science}{2024 - 2027}
+\begin{cvbullets}
+    \item Double diplôme avec l'École des Mines de Saint-Étienne. Machine learning, modélisation statistique, génie logiciel.
+\end{cvbullets}
+
+\cventry{Lycée Lafayette}{Clermont-Ferrand, France}{Classe préparatoire aux grandes écoles (CPGE-ATS), concours d'entrée en écoles d'ingénieurs}{2023 - 2024}
+
+\cventry{Université Clermont Auvergne}{Clermont-Ferrand, France}{DUT Mesures Physiques et Instrumentation}{2021 - 2023}
+
+% 3. EXPERIENCE
+\section{Expérience}
+
+\cventry{Thales}{Brive-la-Gaillarde, France}{Stage : projection et prédiction des prix d'achat (Contrôle de gestion industriel)}{Mai - Août 2026}
+\begin{cvbullets}
+    \item \textbf{Moteur de pricing (livrable principal).} Automatisation de la campagne annuelle de projection des prix N+1 en traduisant les règles du contrôle de gestion dans un moteur Python, avec livraison des résultats aux acheteurs et contrôles de concordance automatisés.
+    \item \textbf{Prédiction des prix par machine learning.} Modèle de variation de prix par commande construit sur $\sim$200\,000 lignes d'achat SAP fiabilisées (28\,000 références, 2017--2026) : LightGBM, Optuna, validation croisée temporelle. \textbf{Erreur absolue moyenne inférieure de 12,1~\%} à celle de la méthode existante.
+\end{cvbullets}
+
+\cventry{Phytocontrol Laboratory}{Nîmes, France}{Stage : analyste performance économique (Data \& BI)}{Nov. - Déc. 2025}
+\begin{cvbullets}
+    \item Analyse de pricing et de rentabilité (prix de vente, coût de revient) sur des comptes clés (Suez, Nestlé) ; structuration des données financières sous Power Query et tableaux de bord Power BI pour le suivi des marges.
+\end{cvbullets}
+
+\cventry{University of Wollongong}{Wollongong, Australie}{Stage de recherche au sein d'une équipe internationale : nanoparticules pour filtres UV de crèmes solaires}{2023}
+
+\cventry{Orange $\cdot$ Michelin}{France}{Stages : maintenance prédictive, analyse industrielle}{2023 - 2025}
+\vspace{3pt}
+
+% 4. PROJECTS
+\section{Projets quantitatifs \& Leadership}
+
+\cventry{Scoring cross-sectionnel d'actions du S\&P 500}{Projet personnel $\cdot$ \href{https://github.com/antojfr/sp500-quant-scoring}{GitHub}}{Sélection mensuelle d'actions, long-only et long-short, avec backtest complet}{2025 à aujourd'hui}
+\begin{cvbullets}
+    \item 24 variables construites à partir des prix bruts (momentum, volatilité, beta, drawdown, taille, macro), $\sim$66\,000 actions-mois ; régression logistique L2 codée from scratch (identique à scikit-learn à 4 décimales), validation \textit{walk-forward}.
+    \item Hors échantillon 2019--2024, net de frais : portefeuille top 20~\% à \textbf{26,0~\% par an, Sharpe 0,93} contre 0,85 pour le S\&P 500 ; le CAPM montre un excès de rendement porté par le beta (1,33), alpha +4,8~\% non significatif ($t = 1{,}12$).
+\end{cvbullets}
+
+\cventry{Projets de Machine Learning}{École des Mines d'Alès}{Algorithmes \textit{from scratch} \& deep learning}{2024 - 2025}
+\begin{cvbullets}
+    \item \textbf{Scoring crédit :} arbre de décision implémenté entièrement sans librairie. \textbf{Optimisation des achats d'énergie :} réseau de neurones (TensorFlow/Keras) pour optimiser le prix d'achat d'électricité de communes d'Occitanie.
+\end{cvbullets}
+
+\cventry{Mines Alès Junior Étude}{Alès, France}{Président, cabinet de conseil étudiant}{Mai 2025 à aujourd'hui}
+\begin{cvbullets}
+    \item Direction d'une équipe de 13 personnes ; obtention du label officiel CNJE ; pilotage du cycle de vie des projets et des partenariats clients.
+\end{cvbullets}
+
+% 5. SKILLS
+\section{Compétences \& Certifications}
+
+\begin{itemize}[itemsep=1.5pt, topsep=2pt, leftmargin=1.1em, label=\tiny$\bullet$]
+    \item \textbf{Techniques :} Python (Pandas, NumPy, Scikit-learn, LightGBM, Optuna, TensorFlow), C, Java, SQL, R, Power BI, Excel (Power Query).
+    \item \textbf{Certifications :} IBM Machine Learning $\cdot$ Yale Financial Markets (R. Shiller) $\cdot$ Stanford ML Specialization (A. Ng).
+    \item \textbf{Langues :} français (langue maternelle), anglais (TOEIC 885), espagnol (A2). \quad \textbf{Centres d'intérêt :} investissement quantitatif, poker, natation.
+\end{itemize}
+
+\end{document}
