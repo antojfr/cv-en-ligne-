@@ -1,13 +1,11 @@
 // Textes fixes de l'interface (tes infos à toi sont dans data.js)
 const UI = {
   fr: {
-    hello: "Merci d'avoir scanné ma carte.",
     available: "Disponible",
     addContact: "Ajouter à mes contacts",
     downloadCv: "CV PDF",
     navFigures: "Profil",
     keyFigures: "Chiffres clés",
-    funFact: "À retenir",
     experience: "Expérience",
     education: "Formation",
     projects: "Projets",
@@ -16,23 +14,20 @@ const UI = {
     interests: "Centres d'intérêt",
     viewCode: "Voir le code sur GitHub",
     ctaTitle: "Contact",
-    ctaText: "Un stage, une question, ou simplement envie d'en parler : écrivez-moi.",
+    ctaText: "Pour un stage ou une question, écrivez-moi par email.",
     ctaButton: "Écrire un email",
     copy: "Copier",
     copied: "Adresse copiée",
-    footer: "Carte NFC · ",
     toastContact: "Fiche contact téléchargée",
     mailSubject: (ev) => `Rencontre au ${ev}`,
     mailBody: (name, ev) => `Bonjour ${name},\n\nNous nous sommes rencontrés au ${ev}. `,
   },
   en: {
-    hello: "Thanks for scanning my card.",
     available: "Available",
     addContact: "Save to contacts",
     downloadCv: "Résumé",
     navFigures: "Profile",
     keyFigures: "Key figures",
-    funFact: "Worth remembering",
     experience: "Experience",
     education: "Education",
     projects: "Projects",
@@ -41,11 +36,10 @@ const UI = {
     interests: "Interests",
     viewCode: "View code on GitHub",
     ctaTitle: "Contact",
-    ctaText: "An internship, a question, or just a chat: write to me.",
+    ctaText: "For an internship or a question, send me an email.",
     ctaButton: "Send an email",
     copy: "Copy",
     copied: "Address copied",
-    footer: "NFC card · ",
     toastContact: "Contact card downloaded",
     mailSubject: (ev) => `We met at ${ev}`,
     mailBody: (name, ev) => `Hi ${name},\n\nWe met at ${ev}. `,
@@ -96,7 +90,7 @@ function equityChart(c) {
 
   let grid = "";
   for (let v = 1; v <= hi; v += 1) {
-    grid += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" class="g"/><text x="${L - 6}" y="${y(v) + 3}" class="ax" text-anchor="end">${v}×</text>`;
+    grid += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" class="g"/><text x="${L - 6}" y="${y(v) + 3}" class="ax" text-anchor="end">${v}x</text>`;
   }
   c.dates.forEach((d, i) => {
     if (d.endsWith("-01")) grid += `<text x="${x(i)}" y="${H - 6}" class="ax" text-anchor="middle">${d.slice(0, 4)}</text>`;
@@ -107,7 +101,7 @@ function equityChart(c) {
     : { title: "Out-of-sample performance", top: "Top 20% (model)", sp: "S&P 500", ew: "Equal-weight universe", note: "Base 1 at the start of 2019, gross of costs. Curves taken from the GitHub repository's figure." };
 
   return `<figure class="chart">
-    <figcaption>${esc(ui.title)} · ${esc(c.dates[0].slice(0, 4))}–${esc(c.dates[n - 1].slice(0, 4))}</figcaption>
+    <figcaption>${esc(ui.title)}, ${esc(c.dates[0].slice(0, 4))}-${esc(c.dates[n - 1].slice(0, 4))}</figcaption>
     <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(ui.title)}">
       ${grid}
       <path d="${path(c.ew)}" class="s-ew"/>
@@ -116,9 +110,9 @@ function equityChart(c) {
       ${end(c.ew, "d-ew")}${end(c.sp500, "d-sp")}${end(c.top20, "d-top")}
     </svg>
     <ul class="legend">
-      <li class="k-top">${esc(ui.top)} <b>${fmt(c.top20[n - 1])}×</b></li>
-      <li class="k-sp">${esc(ui.sp)} <b>${fmt(c.sp500[n - 1])}×</b></li>
-      <li class="k-ew">${esc(ui.ew)} <b>${fmt(c.ew[n - 1])}×</b></li>
+      <li class="k-top">${esc(ui.top)} <b>${fmt(c.top20[n - 1])}x</b></li>
+      <li class="k-sp">${esc(ui.sp)} <b>${fmt(c.sp500[n - 1])}x</b></li>
+      <li class="k-ew">${esc(ui.ew)} <b>${fmt(c.ew[n - 1])}x</b></li>
     </ul>
     <p class="chart-note">${esc(ui.note)}</p>
   </figure>`;
@@ -127,7 +121,7 @@ function equityChart(c) {
 function render() {
   const ui = UI[lang];
   document.documentElement.lang = lang;
-  document.title = `${fullName} — CV`;
+  document.title = `CV ${fullName}`;
 
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     el.textContent = ui[el.dataset.i18n];
@@ -137,22 +131,19 @@ function render() {
     b.setAttribute("aria-pressed", b.dataset.lang === lang);
   });
 
-  $("ref").textContent = `${P.lastName.toUpperCase()} A. · ${t(P.location).split(",")[0]}`;
-  $("event").textContent = t(P.eventFull);
-  $("hello").textContent = ui.hello;
+  $("ref").textContent = t(P.eventFull);
   $("name").innerHTML = `<span>${esc(P.firstName)}</span><span>${esc(P.lastName)}</span>`;
   $("title").textContent = t(P.title);
   $("looking").textContent = t(P.lookingFor);
   $("photo").alt = fullName;
   $("about").textContent = t(P.about);
-  $("funfact").textContent = t(P.funFact);
 
   $("btn-cv").href = t(P.cvPdf);
   $("btn-cv").target = "_blank";
   $("btn-mail-cta").href = mailto();
   $("lnk-mail").href = mailto();
   $("mail-text").textContent = P.email;
-  $("footer").textContent = ui.footer + fullName;
+  $("footer").textContent = `${fullName}, ${new Date().getFullYear()}`;
 
   $("key-figures").innerHTML = (P.keyFigures || [])
     .map(
@@ -180,23 +171,16 @@ function render() {
         ${x.chart ? equityChart(x.chart) : ""}
         ${x.metrics ? `<dl class="metrics">${x.metrics.map((m) => `<div><dt>${esc(t(m.k))}</dt><dd>${esc(t(m.v))}</dd></div>`).join("")}</dl>` : ""}
         ${x.note ? `<p class="fine">${esc(t(x.note))}</p>` : ""}
-        <p class="stack">${(x.tags || []).map(esc).join(" · ")}</p>
-        ${x.link ? `<a class="repo" href="${esc(x.link)}" target="_blank" rel="noopener">${esc(ui.viewCode)} ↗</a>` : ""}
+        <p class="stack">${(x.tags || []).map(esc).join(", ")}</p>
+        ${x.link ? `<a class="repo" href="${esc(x.link)}" target="_blank" rel="noopener">${esc(ui.viewCode)}</a>` : ""}
       </article>`
     )
     .join("");
 
-  const groups = P.skills.map((g) => ({ k: t(g.group), v: t(g.items).join(" · ") }));
-  groups.push({ k: ui.languages, v: P.languages.map((l) => `${t(l.name)} (${t(l.level)})`).join(" · ") });
-  groups.push({ k: ui.interests, v: t(P.interests).join(" · ") });
+  const groups = P.skills.map((g) => ({ k: t(g.group), v: t(g.items).join(", ") }));
+  groups.push({ k: ui.languages, v: P.languages.map((l) => `${t(l.name)} (${t(l.level)})`).join(", ") });
+  groups.push({ k: ui.interests, v: t(P.interests).join(", ") });
   $("skills-list").innerHTML = groups.map((g) => `<div><dt>${esc(g.k)}</dt><dd>${esc(g.v)}</dd></div>`).join("");
-}
-
-function renderTicker() {
-  const items = (P.ticker || [])
-    .map((x) => `<span class="tick"><b>${esc(x.sym)}</b> <span class="${/^[−-]/.test(x.val) ? "down" : "up"}">${esc(x.val)}</span></span>`)
-    .join("");
-  $("ticker").innerHTML = items + items; // dupliqué pour une boucle continue
 }
 
 function setLang(l) {
@@ -237,7 +221,7 @@ function vcard() {
     P.linkedin ? `URL;TYPE=LinkedIn:${P.linkedin}` : "",
     P.github ? `URL;TYPE=GitHub:${P.github}` : "",
     `URL:${location.href.split(/[?#]/)[0]}`,
-    "ORG:Mines Alès · Mines Saint-Étienne",
+    "ORG:Mines Alès, Mines Saint-Étienne",
     `NOTE:${t(P.lookingFor)}`,
     contactPhoto ? fold(`PHOTO;ENCODING=b;TYPE=JPEG:${contactPhoto}`) : "",
     "END:VCARD",
@@ -321,7 +305,6 @@ function watchSections() {
   let saved = null;
   try { saved = localStorage.getItem("lang"); } catch (e) {}
   const nav = (navigator.language || "fr").toLowerCase().startsWith("fr") ? "fr" : "en";
-  renderTicker();
   setLang(params.get("lang") || saved || nav);
 
   document.querySelectorAll(".lang button").forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));

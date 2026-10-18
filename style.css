@@ -1,5 +1,5 @@
-/* Concept : un écran de terminal de marché lu au téléphone.
-   Une colonne, cotations en vert, libellés et dates en ambre, chiffres en tableau à points de conduite. */
+/* Concept : une fiche de marché lue au téléphone.
+   Une colonne, chiffres en vert, libellés et dates en ambre, tableau à points de conduite. */
 :root {
   --ink: #07090c;        /* fond */
   --raise: #0e1116;      /* surfaces ponctuelles */
@@ -57,32 +57,6 @@ h1, h2, h3 { margin: 0; font-weight: inherit; }
 
 :focus-visible { outline: 2px solid var(--pos); outline-offset: 2px; }
 
-/* ---------- Bandeau défilant ---------- */
-.ticker {
-  overflow: hidden;
-  padding-top: env(safe-area-inset-top, 0px);
-  border-bottom: 1px solid var(--line);
-  background: var(--raise);
-}
-
-.ticker-track { display: flex; width: max-content; animation: scroll 40s linear infinite; }
-
-.tick {
-  padding: 7px 16px;
-  border-right: 1px solid var(--line);
-  font-family: var(--mono);
-  font-size: 11px;
-  white-space: nowrap;
-  color: var(--dim);
-}
-
-.tick b { font-weight: 500; color: var(--fg); }
-.tick span { color: var(--pos); }
-.tick span::before { content: "▲ "; font-size: 8px; vertical-align: 1px; }
-.tick span.down::before { content: "▼ "; }
-
-@keyframes scroll { to { transform: translateX(-50%); } }
-
 /* ---------- Barre du haut ---------- */
 
 .bar-inner {
@@ -94,6 +68,8 @@ h1, h2, h3 { margin: 0; font-weight: inherit; }
   font-size: 12px;
   color: var(--dim);
 }
+
+.ref { color: var(--amber); }
 
 .lang { display: flex; gap: 2px; }
 
@@ -109,8 +85,6 @@ h1, h2, h3 { margin: 0; font-weight: inherit; }
 
 .lang button.active { color: var(--ink); background: var(--pos); }
 
-.ref::after { content: "_"; color: var(--pos); animation: blink 1.1s steps(1) infinite; }
-@keyframes blink { 50% { opacity: 0; } }
 
 /* ---------- En-tête ---------- */
 .hero {
@@ -119,24 +93,6 @@ h1, h2, h3 { margin: 0; font-weight: inherit; }
   gap: 16px;
   align-items: end;
   padding-block: 12px 20px;
-}
-
-.event {
-  display: inline-block;
-  margin-bottom: 12px;
-  padding: 3px 8px;
-  border: 1px solid var(--amber);
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  color: var(--amber);
-}
-
-.kicker {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--pos);
-  margin-bottom: 10px;
 }
 
 h1 {
@@ -214,7 +170,6 @@ h1 span { display: block; }
   color: var(--pos);
 }
 
-.status-tag::before { content: "● "; }
 
 /* ---------- Actions ---------- */
 .actions { display: grid; gap: 8px; padding-block: 18px 8px; }
@@ -360,7 +315,7 @@ h2 {
 }
 
 .entry li { padding-left: 16px; }
-.entry li::before { content: "–"; position: absolute; left: 0; }
+.entry li::before { content: "-"; position: absolute; left: 0; }
 .entry .desc { margin-top: 6px; }
 
 .metrics {
@@ -421,8 +376,7 @@ h2 {
 .skills dt { font-family: var(--mono); font-size: 12px; color: var(--amber); }
 .skills dd { margin: 0; font-size: 0.95rem; line-height: 1.5; }
 
-/* Note et contact */
-.note p { max-width: 62ch; color: var(--dim); }
+/* Contact */
 
 .contact { display: grid; gap: 14px; }
 .contact h2 { margin-bottom: 0; }
