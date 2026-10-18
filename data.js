@@ -158,11 +158,31 @@ const PROFILE = {
       tags: ["Python", "Backtest", "Walk-forward", "CAPM"],
     },
     {
-      name: { fr: "Projets de machine learning", en: "Machine learning projects" },
+      name: { fr: "Scoring de crédit : arbre de décision codé from scratch", en: "Credit scoring: decision tree coded from scratch" },
       dates: { fr: "2024 - 2025", en: "2024 - 2025" },
       description: {
-        fr: "Scoring crédit : arbre de décision implémenté entièrement sans librairie. Optimisation des achats d'énergie : réseau de neurones (TensorFlow/Keras) pour optimiser le prix d'achat d'électricité de communes d'Occitanie.",
-        en: "Credit scoring: decision tree implemented entirely without libraries. Energy procurement optimisation: neural network (TensorFlow/Keras) to optimise electricity purchase prices for municipalities in Occitanie.",
+        fr: "Prédire si un crédit immobilier est accordé à partir du profil du client (revenus, charges, historique). Arbre de décision écrit à la main, sans librairie de modélisation : critères de Gini et d'entropie, gain d'information, choix de la profondeur. Les règles apprises sont lisibles, ce qu'exigent Bâle et le RGPD pour justifier un refus.",
+        en: "Predict whether a mortgage is granted from the client's profile (income, expenses, history). Decision tree written by hand, without any modelling library: Gini and entropy criteria, information gain, depth selection. The learned rules are readable, as Basel and GDPR require to justify a refusal.",
+      },
+      metrics: [
+        { k: { fr: "Précision (jeu de test)", en: "Accuracy (test set)" }, v: { fr: "80,7 %", en: "80.7%" } },
+        { k: { fr: "Profondeur optimale", en: "Optimal depth" }, v: "3" },
+        { k: { fr: "Règles de décision", en: "Decision rules" }, v: "8" },
+        { k: { fr: "Validation", en: "Validation" }, v: { fr: "= scikit-learn", en: "= scikit-learn" } },
+      ],
+      note: {
+        fr: "Courbes précision / profondeur identiques à celles de scikit-learn. Au-delà de 3 à 4 niveaux, le modèle surapprend.",
+        en: "Accuracy / depth curves match scikit-learn's. Beyond 3 to 4 levels, the model overfits.",
+      },
+      link: "https://github.com/antojfr/python-descision-tree-from-scratch-for-Immo-credit",
+      tags: ["Python", "NumPy", "pandas"],
+    },
+    {
+      name: { fr: "Optimisation des achats d'électricité", en: "Electricity procurement optimisation" },
+      dates: { fr: "2024 - 2025", en: "2024 - 2025" },
+      description: {
+        fr: "Réseau de neurones pour optimiser le prix d'achat d'électricité de communes d'Occitanie. Projet de l'École des Mines d'Alès.",
+        en: "Neural network to optimise electricity purchase prices for municipalities in Occitanie. École des Mines d'Alès project.",
       },
       link: "",
       tags: ["Python", "TensorFlow", "Keras"],
