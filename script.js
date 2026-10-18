@@ -86,7 +86,7 @@ function render() {
   $("title").textContent = t(P.title);
   $("looking").textContent = t(P.lookingFor);
   $("highlights").innerHTML = (P.highlights || [])
-    .map((h) => `<div class="stat"><strong>${esc(h.value)}</strong><span>${esc(t(h.label))}</span></div>`)
+    .map((h) => `<div class="stat"><strong>${esc(t(h.value))}</strong><span>${esc(t(h.label))}</span></div>`)
     .join("");
   $("funfact").textContent = t(P.funFact);
   $("about").textContent = t(P.about);

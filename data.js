@@ -40,9 +40,9 @@ const PROFILE = {
 
   // Chiffres clés affichés en haut de page
   highlights: [
-    { value: "−12,1 %", label: { fr: "d'erreur de prédiction chez Thales", en: "prediction error at Thales" } },
-    { value: "13", label: { fr: "personnes dirigées en Junior-Entreprise", en: "people led as Junior Enterprise president" } },
-    { value: "885", label: { fr: "au TOEIC", en: "TOEIC score" } },
+    { value: { fr: "−12,1 %", en: "−12.1%" }, label: { fr: "d'erreur de prédiction chez Thales", en: "prediction error at Thales" } },
+    { value: "13", label: { fr: "personnes dirigées en Junior-Entreprise", en: "people led at Junior Enterprise" } },
+    { value: { fr: "0,93", en: "0.93" }, label: { fr: "de Sharpe hors échantillon (S&P 500 : 0,85)", en: "out-of-sample Sharpe (S&P 500: 0.85)" } },
   ],
 
   about: {
@@ -67,18 +67,18 @@ const PROFILE = {
           "Modélisation des variations de prix sur ~200 000 lignes d'historique SAP (28 000 références, 2017–2026) : LightGBM, Optuna, validation temporelle. Erreur absolue moyenne réduite de 12,1 % face à la méthode existante.",
         ],
         en: [
-          "Python application automating the yearly N+1 price projection campaign: financial controlling rules translated into code, results injected into the buyers' workbook with reconciliation checks.",
-          "Modelled order price changes on ~200,000 cleaned SAP history rows (28,000 parts, 2017–2026): LightGBM, Optuna, time-based validation. Mean absolute error cut by 12.1% vs. the existing method.",
+          "Pricing engine (main deliverable): automated the annual year-ahead price projection campaign by translating management-control rules into a Python engine, with results delivered to buyers and automated reconciliation checks.",
+          "Machine learning price prediction: order-level price variation model built on ~200,000 cleansed SAP purchasing records (28,000 part numbers, 2017–2026) with LightGBM, Optuna and time-based cross-validation. 12.1% lower mean absolute error than the incumbent method.",
         ],
       },
     },
     {
-      role: { fr: "Président", en: "President" },
+      role: { fr: "Président", en: "President, student-run consulting firm" },
       company: "Mines Alès Junior Étude",
       dates: { fr: "Mai 2025 – aujourd'hui", en: "May 2025 – present" },
       details: {
         fr: ["Direction d'une équipe de 13 personnes ; obtention du label officiel CNJE ; pilotage des projets et partenariats."],
-        en: ["Leading a team of 13; obtained the official CNJE label; managing projects and partnerships."],
+        en: ["Led a team of 13; secured official CNJE accreditation; managed the project lifecycle and client partnerships."],
       },
     },
     {
@@ -87,17 +87,23 @@ const PROFILE = {
       dates: { fr: "Nov. – Déc. 2025", en: "Nov. – Dec. 2025" },
       details: {
         fr: ["Analyse de pricing et de rentabilité sur comptes clés (Suez, Nestlé) ; données structurées sous Power Query, tableaux de bord Power BI pour le pilotage des marges."],
-        en: ["Pricing and profitability analysis on key accounts (Suez, Nestlé); data structured with Power Query, Power BI dashboards for margin management."],
+        en: ["Pricing and profitability analysis (selling prices, cost of goods sold) on key accounts (Suez, Nestlé); financial data structuring in Power Query and Power BI dashboards for margin monitoring."],
       },
     },
     {
-      role: { fr: "Stages — Maintenance prédictive, analyse industrielle, recherche", en: "Internships — Predictive maintenance, industrial analysis, research" },
-      company: "Orange · Michelin · University of Wollongong",
-      dates: { fr: "2023 – 2025", en: "2023 – 2025" },
+      role: { fr: "Stage de recherche en équipe internationale", en: "Research internship within an international team" },
+      company: "University of Wollongong · Australie / Australia",
+      dates: { fr: "2023", en: "2023" },
       details: {
-        fr: ["France et Australie, dont recherche au sein d'une équipe internationale."],
-        en: ["France and Australia, including research within an international team."],
+        fr: ["Nanoparticules pour filtres UV de crèmes solaires."],
+        en: ["Nanoparticles for sunscreen UV filters."],
       },
+    },
+    {
+      role: { fr: "Stages — Maintenance prédictive, analyse industrielle", en: "Internships — Predictive maintenance, industrial analysis" },
+      company: "Orange · Michelin",
+      dates: { fr: "2023 – 2025", en: "2023 – 2025" },
+      details: { fr: [], en: [] },
     },
   ],
 
@@ -107,27 +113,27 @@ const PROFILE = {
       school: "École des Mines de Saint-Étienne",
       dates: { fr: "2026 – 2027", en: "2026 – 2027" },
       details: {
-        fr: "Mathématiques & Machine Learning : processus stochastiques, Monte-Carlo, optimisation, apprentissage statistique, calcul intensif.",
-        en: "Mathematics & Machine Learning: stochastic processes, Monte Carlo, optimisation, statistical learning, high-performance computing.",
+        fr: "Master national co-accrédité avec l'École Centrale de Lyon et l'ENS de Lyon. Filière Mathématiques & Machine Learning : processus stochastiques, Monte-Carlo, optimisation, apprentissage statistique, calcul intensif.",
+        en: "National Master's degree co-accredited with École Centrale de Lyon and ENS de Lyon. Mathematics & Machine Learning stream: probability and stochastic processes, Monte Carlo methods, optimisation, statistical learning, high-performance computing.",
       },
     },
     {
-      degree: { fr: "Ingénieur généraliste · IA & Data Science", en: "Master of Engineering · AI & Data Science" },
+      degree: { fr: "Diplôme d'ingénieur · IA & Data Science", en: "Diplôme d'Ingénieur (5-year MSc-equivalent) · AI & Data Science" },
       school: "École des Mines d'Alès",
       dates: { fr: "2024 – 2027", en: "2024 – 2027" },
       details: {
         fr: "Double diplôme avec Mines Saint-Étienne. Machine learning, modélisation statistique, développement logiciel.",
-        en: "Double degree with Mines Saint-Étienne. Machine learning, statistical modelling, software development.",
+        en: "Double degree with École des Mines de Saint-Étienne. Machine learning, statistical modelling, software engineering.",
       },
     },
     {
-      degree: { fr: "Classe préparatoire ATS", en: "Preparatory class for Grandes Écoles (ATS)" },
+      degree: { fr: "Classe préparatoire ATS", en: "Intensive preparatory course (CPGE-ATS) for French engineering grandes écoles" },
       school: "Lycée Lafayette · Clermont-Ferrand",
       dates: { fr: "2023 – 2024", en: "2023 – 2024" },
       details: { fr: "", en: "" },
     },
     {
-      degree: { fr: "DUT Mesures Physiques", en: "Two-year degree in Physical Measurements (DUT)" },
+      degree: { fr: "DUT Mesures Physiques", en: "Two-year technical degree (DUT) in Physical Measurement and Instrumentation" },
       school: "Université Clermont Auvergne",
       dates: { fr: "2021 – 2023", en: "2021 – 2023" },
       details: { fr: "", en: "" },
@@ -136,13 +142,13 @@ const PROFILE = {
 
   projects: [
     {
-      name: { fr: "Modèle de scoring d'actions S&P 500", en: "S&P 500 stock-scoring model" },
+      name: { fr: "Scoring cross-sectionnel d'actions S&P 500", en: "S&P 500 cross-sectional equity scoring" },
       description: {
-        fr: "Signal multi-facteurs : 24 indicateurs codés à la main (momentum, volatilité, beta, MACD, RSI, drawdown…), ~66 000 observations, collecte automatisée et validation walk-forward.",
-        en: "Multi-factor signal: 24 hand-coded indicators (momentum, volatility, beta, MACD, RSI, drawdown…), ~66,000 observations, automated data collection and walk-forward validation.",
+        fr: "Sélection mensuelle d'actions (long-only et long-short) avec backtest complet : 24 variables construites à partir des prix bruts, ~66 000 actions-mois, régression logistique L2 codée from scratch (identique à scikit-learn à 4 décimales), validation walk-forward. Hors échantillon 2019–2024, net de frais : portefeuille top 20 % à 26,0 %/an, Sharpe 0,93 contre 0,85 pour le S&P 500 ; le CAPM montre un excès de rendement porté par le beta (1,33), alpha +4,8 % non significatif (t = 1,12).",
+        en: "Monthly stock selection (long-only and long-short) with full backtest: 24 features built from raw prices, ~66,000 stock-months, L2 logistic regression coded from scratch (matches scikit-learn to 4 d.p.), walk-forward validation. Out-of-sample 2019–2024, net of costs: top-20% portfolio 26.0% p.a., Sharpe 0.93 vs. 0.85 for the S&P 500; CAPM shows excess return driven by beta (1.33), alpha +4.8% not significant (t = 1.12).",
       },
-      link: "",
-      tags: ["Python", "yfinance", "FRED API", "Walk-forward"],
+      link: "https://github.com/antojfr/sp500-quant-scoring",
+      tags: ["Python", "Backtest", "Walk-forward", "CAPM"],
     },
     {
       name: { fr: "Machine Learning from scratch & Deep Learning", en: "Machine Learning from scratch & Deep Learning" },
@@ -166,8 +172,8 @@ const PROFILE = {
 
   skills: [
     { group: { fr: "Data & ML", en: "Data & ML" }, items: ["Python", "Pandas", "NumPy", "Scikit-learn", "LightGBM", "Optuna", "TensorFlow"] },
-    { group: { fr: "Langages", en: "Languages" }, items: ["C", "Java", "SQL", "R", "VBA"] },
-    { group: { fr: "Outils", en: "Tools" }, items: ["Git", "LaTeX", "Power BI", "Excel / Power Query"] },
+    { group: { fr: "Langages", en: "Languages" }, items: ["C", "Java", "SQL", "R"] },
+    { group: { fr: "Outils", en: "Tools" }, items: ["Power BI", "Excel / Power Query"] },
     {
       group: { fr: "Certifications", en: "Certifications" },
       items: {
