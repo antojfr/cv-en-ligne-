@@ -17,6 +17,9 @@ const PROFILE = {
   phone: "+33 6 29 22 47 31", // ajouté uniquement à la fiche contact (laisser vide pour le retirer)
   location: { fr: "Saint-Étienne et Alès", en: "Saint-Étienne and Alès, France" },
 
+  // Compteur de visites GoatCounter : https://<code>.goatcounter.com (laisser vide pour le désactiver)
+  goatcounter: "antojfr",
+
   linkedin: "https://www.linkedin.com/in/antonin-jaffr%C3%A9",
   github: "https://github.com/antojfr",
 
@@ -130,6 +133,7 @@ const PROFILE = {
 
   projects: [
     {
+      id: "sp500",
       name: { fr: "Scoring cross-sectionnel d'actions S&P 500", en: "S&P 500 cross-sectional equity scoring" },
       dates: { fr: "Depuis 2025", en: "Since 2025" },
       description: {
@@ -158,6 +162,7 @@ const PROFILE = {
       tags: ["Python", "Backtest", "Walk-forward", "CAPM"],
     },
     {
+      id: "credit",
       name: { fr: "Scoring de crédit : arbre de décision codé from scratch", en: "Credit scoring: decision tree coded from scratch" },
       dates: { fr: "2024 - 2025", en: "2024 - 2025" },
       description: {
@@ -178,6 +183,7 @@ const PROFILE = {
       tags: ["Python", "NumPy", "pandas"],
     },
     {
+      id: "power",
       name: { fr: "Optimisation des achats d'électricité", en: "Electricity procurement optimisation" },
       dates: { fr: "2024 - 2025", en: "2024 - 2025" },
       description: {
@@ -188,6 +194,7 @@ const PROFILE = {
       tags: ["Python", "TensorFlow", "Keras"],
     },
     {
+      id: "nfc",
       name: { fr: "Ce CV NFC", en: "This NFC résumé" },
       dates: { fr: "2026", en: "2026" },
       description: {

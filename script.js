@@ -13,6 +13,9 @@ const UI = {
     languages: "Langues",
     interests: "Centres d'intérêt",
     viewCode: "Voir le code sur GitHub",
+    forTo: "Pour",
+    forLink: "Voir le projet",
+    mailSubjectFor: (co) => `Suite au Forum Perspectives : ${co}`,
     ctaTitle: "Contact",
     ctaText: "Pour un stage ou une question, écrivez-moi par email.",
     ctaButton: "Écrire un email",
@@ -35,6 +38,9 @@ const UI = {
     languages: "Languages",
     interests: "Interests",
     viewCode: "View code on GitHub",
+    forTo: "For",
+    forLink: "See the project",
+    mailSubjectFor: (co) => `Following Forum Perspectives: ${co}`,
     ctaTitle: "Contact",
     ctaText: "For an internship or a question, send me an email.",
     ctaButton: "Send an email",
@@ -51,6 +57,12 @@ const $ = (id) => document.getElementById(id);
 const fullName = `${P.firstName} ${P.lastName}`;
 let lang = "fr";
 
+// Entreprise ciblée par le lien (?for=abc), sinon null
+const TARGET = (() => {
+  const id = (new URLSearchParams(location.search).get("for") || "").toLowerCase();
+  return (typeof TARGETS !== "undefined" && TARGETS.find((x) => x.id === id)) || null;
+})();
+
 // Accepte soit une chaîne, soit un objet { fr, en }
 const t = (v) => (v && typeof v === "object" && !Array.isArray(v) ? v[lang] ?? v.fr : v);
 
@@ -60,7 +72,7 @@ function esc(s) {
 
 function mailto() {
   const ui = UI[lang];
-  const subject = encodeURIComponent(ui.mailSubject(t(P.event)));
+  const subject = encodeURIComponent(TARGET ? ui.mailSubjectFor(TARGET.name) : ui.mailSubject(t(P.event)));
   const body = encodeURIComponent(ui.mailBody(P.firstName, t(P.event)));
   return `mailto:${P.email}?subject=${subject}&body=${body}`;
 }
@@ -138,6 +150,13 @@ function render() {
   $("photo").alt = fullName;
   $("about").textContent = t(P.about);
 
+  if (TARGET) {
+    $("for-box").hidden = false;
+    $("for-to").textContent = `${ui.forTo} ${TARGET.name}`;
+    $("for-msg").textContent = t(TARGET.msg);
+    document.title = `CV ${fullName}, ${TARGET.name}`;
+  }
+
   $("btn-cv").href = t(P.cvPdf);
   $("btn-cv").target = "_blank";
   $("btn-mail-cta").href = mailto();
@@ -162,9 +181,13 @@ function render() {
     .map((x) => entry({ when: t(x.dates), title: t(x.degree), org: x.school, desc: t(x.details) }))
     .join("");
 
-  $("projects-list").innerHTML = P.projects
+  // Le projet le plus pertinent pour l'entreprise ciblée passe en premier
+  const projects = TARGET
+    ? [...P.projects].sort((a, b) => (b.id === TARGET.focus) - (a.id === TARGET.focus))
+    : P.projects;
+  $("projects-list").innerHTML = projects
     .map(
-      (x) => `<article class="entry">
+      (x) => `<article class="entry${TARGET && x.id === TARGET.focus ? " focus" : ""}">
         <span class="when">${esc(t(x.dates))}</span>
         <h3>${esc(t(x.name))}</h3>
         <p class="desc">${esc(t(x.description))}</p>
@@ -241,6 +264,7 @@ function downloadContact(e) {
   a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 2000);
   toast(UI[lang].toastContact);
+  track("contact");
 }
 
 function copyEmail() {
@@ -298,6 +322,29 @@ function watchSections() {
   });
 }
 
+// ---------- Compteur de visites (GoatCounter, sans cookies) ----------
+// Chaque lien d'entreprise est compté sur sa propre page : /for/abc, /for/sg…
+function countPath() {
+  return TARGET ? `/for/${TARGET.id}` : "/";
+}
+
+function loadCounter() {
+  if (!P.goatcounter || /^(localhost|127\.)/.test(location.hostname)) return;
+  window.goatcounter = { path: countPath() };
+  const s = document.createElement("script");
+  s.async = true;
+  s.src = "https://gc.zgo.at/count.js";
+  s.dataset.goatcounter = `https://${P.goatcounter}.goatcounter.com/count`;
+  document.head.appendChild(s);
+}
+
+// Actions importantes : contact enregistré, CV ouvert, lien GitHub ou LinkedIn
+function track(action) {
+  try {
+    window.goatcounter?.count?.({ path: `${action}${countPath() === "/" ? "" : countPath()}`, title: action, event: true });
+  } catch (e) {}
+}
+
 // ---------- Initialisation ----------
 (function init() {
   // Langue : ?lang=en dans l'URL > choix précédent > langue du téléphone
@@ -319,6 +366,11 @@ function watchSections() {
   if (P.github) $("lnk-github").href = P.github; else $("lnk-github").hidden = true;
 
   $("btn-contact").addEventListener("click", downloadContact);
+  $("btn-cv").addEventListener("click", () => track("cv"));
+  $("lnk-github").addEventListener("click", () => track("github"));
+  $("lnk-linkedin").addEventListener("click", () => track("linkedin"));
+  $("lnk-mail").addEventListener("click", () => track("email"));
+  loadCounter();
   loadContactPhoto();
   $("btn-copy").addEventListener("click", copyEmail);
   watchSections();

@@ -31,3 +31,31 @@ Astuces :
 - Sinon la langue suit celle du téléphone, et le visiteur peut changer avec le bouton FR / EN.
 - Les iPhone récents lisent le NFC sans application ; sur Android, le NFC doit être activé.
 - Ajoute un petit QR code de secours (même URL) sur ton badge ou ta carte, pour les téléphones sans NFC.
+
+## Liens personnalisés par entreprise
+
+Chaque lien affiche en haut de page « Pour <entreprise> » avec un message adapté, et met le projet le plus pertinent en premier. À mettre dans les emails de relance. Pour ajouter une entreprise : une ligne dans `targets.js`.
+
+| Entreprise | Lien |
+|---|---|
+| ABC Arbitrage | https://antojfr.github.io/cv-en-ligne-/?for=abc |
+| Société Générale | https://antojfr.github.io/cv-en-ligne-/?for=sg |
+| Murex | https://antojfr.github.io/cv-en-ligne-/?for=murex |
+| Neoen | https://antojfr.github.io/cv-en-ligne-/?for=neoen |
+| Nexialog Consulting | https://antojfr.github.io/cv-en-ligne-/?for=nexialog |
+| Fincley Consulting | https://antojfr.github.io/cv-en-ligne-/?for=fincley |
+| Groupe BPCE | https://antojfr.github.io/cv-en-ligne-/?for=bpce |
+| TotalEnergies | https://antojfr.github.io/cv-en-ligne-/?for=totalenergies |
+| Exiom Partners | https://antojfr.github.io/cv-en-ligne-/?for=exiom |
+| KPMG | https://antojfr.github.io/cv-en-ligne-/?for=kpmg |
+| EY | https://antojfr.github.io/cv-en-ligne-/?for=ey |
+| Wavestone | https://antojfr.github.io/cv-en-ligne-/?for=wavestone |
+| Sia | https://antojfr.github.io/cv-en-ligne-/?for=sia |
+| Accenture | https://antojfr.github.io/cv-en-ligne-/?for=accenture |
+| Talan | https://antojfr.github.io/cv-en-ligne-/?for=talan |
+| Sopra Steria Next | https://antojfr.github.io/cv-en-ligne-/?for=soprasterianext |
+| Metravib Defence | https://antojfr.github.io/cv-en-ligne-/?for=metravib |
+
+## Compteur de visites (GoatCounter)
+
+Le site compte les visites sur https://antojfr.goatcounter.com (sans cookies). Chaque lien d'entreprise apparaît comme une page `/for/<id>`, et les actions comme des événements : `contact` (fiche enregistrée), `cv`, `github`, `linkedin`, `email`, suivis du lien d'origine (par exemple `contact/for/abc`). Le code du compte se règle dans `data.js` (`goatcounter`).
