@@ -34,8 +34,8 @@ const PROFILE = {
 
   // Ce que tu recherches — affiché avec un voyant vert « disponible ».
   lookingFor: {
-    fr: "Stage de 6 mois · marchés financiers & modélisation quantitative · dès mars 2027",
-    en: "6-month internship · financial markets & quantitative modelling · from March 2027",
+    fr: "Stage de 6 mois à l'étranger · marchés financiers & modélisation quantitative · dès mars 2027",
+    en: "6-month internship abroad · financial markets & quantitative modelling · from March 2027",
   },
 
   // Chiffres clés : affichés comme le tableau d'une fiche de fonds
