@@ -57,6 +57,32 @@ h1, h2, h3 { margin: 0; font-weight: inherit; }
 
 :focus-visible { outline: 2px solid var(--pos); outline-offset: 2px; }
 
+/* ---------- Bandeau défilant ---------- */
+.ticker {
+  overflow: hidden;
+  padding-top: env(safe-area-inset-top, 0px);
+  border-bottom: 1px solid var(--line);
+  background: var(--raise);
+}
+
+.ticker-track { display: flex; width: max-content; animation: scroll 40s linear infinite; }
+
+.tick {
+  padding: 7px 16px;
+  border-right: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 11px;
+  white-space: nowrap;
+  color: var(--dim);
+}
+
+.tick b { font-weight: 500; color: var(--fg); }
+.tick span { color: var(--pos); }
+.tick span::before { content: "▲ "; font-size: 8px; vertical-align: 1px; }
+.tick span.down::before { content: "▼ "; }
+
+@keyframes scroll { to { transform: translateX(-50%); } }
+
 /* ---------- Barre du haut ---------- */
 
 .bar-inner {
