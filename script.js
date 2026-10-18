@@ -16,6 +16,21 @@ const UI = {
     forTo: "Pour",
     forLink: "Voir le projet",
     mailSubjectFor: (co) => `Suite au Forum Perspectives : ${co}`,
+    current: "En cours",
+    navChallenge: "Défi",
+    chTitle: "Pas convaincu ?",
+    chLead: "Soumettez-moi un problème, je vous rends une solution.",
+    chText: "Un exercice de probas, un petit jeu de données à modéliser, une question de pricing : décrivez le défi et le délai qui vous convient. Je vous renvoie mon travail par email.",
+    chName: "Nom",
+    chCompany: "Entreprise",
+    chEmail: "Email",
+    chTask: "Le défi",
+    chSend: "Envoyer le défi",
+    chSending: "Envoi…",
+    chMissing: "Merci de remplir le nom, l'email et le défi.",
+    chBadEmail: "Cette adresse email ne semble pas valide.",
+    chFail: "L'envoi n'a pas marché. Votre email s'ouvre avec le défi déjà rédigé.",
+    chDone: (name) => `Merci ${name}, défi bien reçu. Je reviens vers vous par email.`,
     ctaTitle: "Contact",
     ctaText: "Pour un stage ou une question, écrivez-moi par email.",
     ctaButton: "Écrire un email",
@@ -41,6 +56,21 @@ const UI = {
     forTo: "For",
     forLink: "See the project",
     mailSubjectFor: (co) => `Following Forum Perspectives: ${co}`,
+    current: "In progress",
+    navChallenge: "Challenge",
+    chTitle: "Not convinced?",
+    chLead: "Send me a problem, I'll send you back a solution.",
+    chText: "A probability puzzle, a small dataset to model, a pricing question: describe the challenge and the deadline that suits you. I'll email you my work.",
+    chName: "Name",
+    chCompany: "Company",
+    chEmail: "Email",
+    chTask: "The challenge",
+    chSend: "Send the challenge",
+    chSending: "Sending…",
+    chMissing: "Please fill in your name, email and the challenge.",
+    chBadEmail: "This email address doesn't look valid.",
+    chFail: "Sending failed. Your email app opens with the challenge already written.",
+    chDone: (name) => `Thanks ${name}, challenge received. I'll get back to you by email.`,
     ctaTitle: "Contact",
     ctaText: "For an internship or a question, send me an email.",
     ctaButton: "Send an email",
@@ -200,6 +230,18 @@ function render() {
       </article>`
     )
     .join("");
+
+  $("current-list").innerHTML = (P.current || [])
+    .map(
+      (x) => `<li class="entry">
+        <span class="when">${esc(t(x.status))}</span>
+        <h3>${esc(t(x.title))}</h3>
+        <p class="desc">${esc(t(x.desc))}</p>
+        ${x.link ? `<a class="repo" href="${esc(x.link)}" target="_blank" rel="noopener">${esc(ui.viewCode)}</a>` : ""}
+      </li>`
+    )
+    .join("");
+  $("current").hidden = !(P.current || []).length;
 
   const groups = P.skills.map((g) => ({ k: t(g.group), v: t(g.items).join(", ") }));
   groups.push({ k: ui.languages, v: P.languages.map((l) => `${t(l.name)} (${t(l.level)})`).join(", ") });
@@ -393,6 +435,63 @@ function track(action) {
   } catch (e) {}
 }
 
+// ---------- Formulaire « Pas convaincu ? » ----------
+// Envoi par FormSubmit (sans serveur) vers l'adresse de data.js ; si ça échoue, l'app mail prend le relais.
+function setupChallenge() {
+  const form = $("ch-form");
+  if (TARGET) $("ch-company").value = TARGET.name;
+  form.addEventListener("input", () => { $("ch-error").hidden = true; });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const ui = UI[lang];
+    const v = (id) => $(id).value.trim();
+    const err = $("ch-error");
+    err.hidden = true;
+    if ($("ch-honey").value) return; // robot
+    if (!v("ch-name") || !v("ch-email") || !v("ch-task")) {
+      err.textContent = ui.chMissing; err.hidden = false; return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v("ch-email"))) {
+      err.textContent = ui.chBadEmail; err.hidden = false; $("ch-email").focus(); return;
+    }
+
+    const payload = {
+      nom: v("ch-name"),
+      entreprise: v("ch-company"),
+      email: v("ch-email"),
+      defi: v("ch-task"),
+      lien: TARGET ? `?for=${TARGET.id}` : "(page normale)",
+      _subject: `Défi CV : ${v("ch-company") || v("ch-name")}`,
+      _replyto: v("ch-email"),
+      _template: "table",
+    };
+    const btn = $("ch-submit");
+    btn.disabled = true;
+    btn.textContent = ui.chSending;
+    try {
+      const r = await fetch(`https://formsubmit.co/ajax/${P.email}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const res = await r.json().catch(() => ({}));
+      if (!r.ok || String(res.success) === "false") throw new Error(res.message || r.status);
+      form.hidden = true;
+      $("ch-done").textContent = ui.chDone(payload.nom);
+      $("ch-done").hidden = false;
+      track("defi");
+    } catch (ex) {
+      err.textContent = ui.chFail; err.hidden = false;
+      const body = `${payload.nom}${payload.entreprise ? ` (${payload.entreprise})` : ""}\n${payload.email}\n\n${payload.defi}`;
+      location.href = `mailto:${P.email}?subject=${encodeURIComponent(payload._subject)}&body=${encodeURIComponent(body)}`;
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = `<span>${esc(ui.chSend)}</span>`;
+    }
+  });
+}
+
 // ---------- Initialisation ----------
 (function init() {
   // Langue : ?lang=en dans l'URL > choix précédent > langue du téléphone
@@ -422,5 +521,6 @@ function track(action) {
   loadCounter();
   loadContactPhoto();
   $("btn-copy").addEventListener("click", copyEmail);
+  setupChallenge();
   watchSections();
 })();

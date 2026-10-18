@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,700..900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="style.css?v=13">
 </head>
 <body>
   <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
@@ -90,6 +90,7 @@
       <a href="#projects" data-i18n="projects"></a>
       <a href="#education" data-i18n="education"></a>
       <a href="#skills" data-i18n="skills"></a>
+      <a href="#challenge" data-i18n="navChallenge"></a>
     </nav>
 
     <section class="block" id="figures">
@@ -108,6 +109,11 @@
       <div class="entries" id="projects-list"></div>
     </section>
 
+    <section class="block" id="current">
+      <h2 data-i18n="current"></h2>
+      <ol class="entries" id="current-list"></ol>
+    </section>
+
     <section class="block" id="education">
       <h2 data-i18n="education"></h2>
       <ol class="entries" id="education-list"></ol>
@@ -116,6 +122,30 @@
     <section class="block" id="skills">
       <h2 data-i18n="skills"></h2>
       <dl class="skills" id="skills-list"></dl>
+    </section>
+
+    <section class="block challenge" id="challenge">
+      <h2 data-i18n="chTitle"></h2>
+      <p class="ch-lead" data-i18n="chLead"></p>
+      <p class="ch-text" data-i18n="chText"></p>
+      <form id="ch-form" novalidate>
+        <input type="text" name="_honey" id="ch-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label for="ch-name"><span data-i18n="chName"></span>
+          <input id="ch-name" name="nom" type="text" autocomplete="name" required>
+        </label>
+        <label for="ch-company"><span data-i18n="chCompany"></span>
+          <input id="ch-company" name="entreprise" type="text" autocomplete="organization">
+        </label>
+        <label for="ch-email"><span data-i18n="chEmail"></span>
+          <input id="ch-email" name="email" type="email" autocomplete="email" inputmode="email" required>
+        </label>
+        <label for="ch-task"><span data-i18n="chTask"></span>
+          <textarea id="ch-task" name="defi" rows="5" required></textarea>
+        </label>
+        <p class="ch-error" id="ch-error" role="alert" hidden></p>
+        <button class="btn primary" type="submit" id="ch-submit"><span data-i18n="chSend"></span></button>
+      </form>
+      <p class="ch-done" id="ch-done" role="status" hidden></p>
     </section>
 
     <section class="block contact">
@@ -131,8 +161,8 @@
 
   <footer class="wrap" id="footer"></footer>
 
-  <script src="data.js?v=12"></script>
-  <script src="targets.js?v=12"></script>
-  <script src="script.js?v=12"></script>
+  <script src="data.js?v=13"></script>
+  <script src="targets.js?v=13"></script>
+  <script src="script.js?v=13"></script>
 </body>
 </html>

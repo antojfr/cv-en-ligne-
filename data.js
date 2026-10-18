@@ -218,6 +218,28 @@ const PROFILE = {
     },
   ],
 
+  // En cours : ce sur quoi tu travailles en ce moment (à mettre à jour)
+  current: [
+    {
+      status: { fr: "Prochaine étape", en: "Next step" },
+      title: { fr: "Rendre le long-short S&P 500 vraiment neutre au marché", en: "Make the S&P 500 long-short truly market-neutral" },
+      desc: {
+        fr: "Couvrir le bêta résiduel (0,53 aujourd'hui) et neutraliser les scores par secteur, pour isoler la part du rendement qui vient vraiment de la sélection.",
+        en: "Hedge the residual beta (0.53 today) and neutralise scores by sector, to isolate the share of return that really comes from stock selection.",
+      },
+      link: "https://github.com/antojfr/sp500-quant-scoring",
+    },
+    {
+      status: { fr: "Prochaine étape", en: "Next step" },
+      title: { fr: "Ajouter des facteurs fondamentaux", en: "Add fundamental factors" },
+      desc: {
+        fr: "Qualité, value et croissance en plus des 24 variables de prix, avec un réglage des hyperparamètres par validation imbriquée, sans toucher au jeu de test.",
+        en: "Quality, value and growth on top of the 24 price features, with hyperparameters tuned by nested validation, without touching the test set.",
+      },
+      link: "https://github.com/antojfr/sp500-quant-scoring",
+    },
+  ],
+
   skills: [
     { group: { fr: "Python & ML", en: "Python & ML" }, items: ["Pandas", "NumPy", "Scikit-learn", "LightGBM", "Optuna", "TensorFlow"] },
     { group: { fr: "Langages", en: "Languages" }, items: ["Python", "C", "Java", "SQL", "R"] },
