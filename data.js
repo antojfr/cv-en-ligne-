@@ -22,8 +22,9 @@ const PROFILE = {
   // CV PDF par langue (le français est la traduction exacte de l'anglais).
   cvPdf: { fr: "cv/cv-fr.pdf", en: "cv/cv-en.pdf" },
 
-  // Nom de l'événement : utilisé dans l'objet du mail.
-  event: { fr: "le forum entreprises", en: "the career fair" },
+  // Événement : affiché en haut de page et dans l'email pré-rempli.
+  event: { fr: "Forum Perspectives", en: "Forum Perspectives" },
+  eventFull: { fr: "Forum Perspectives · 20.10.2026 · Lyon", en: "Forum Perspectives · 20 Oct 2026 · Lyon" },
 
   title: {
     fr: "Élève ingénieur Mines · Data Science & Finance quantitative",

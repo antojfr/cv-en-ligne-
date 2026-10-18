@@ -121,6 +121,17 @@ h1, h2, h3 { margin: 0; font-weight: inherit; }
   padding-block: 12px 20px;
 }
 
+.event {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 3px 8px;
+  border: 1px solid var(--amber);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--amber);
+}
+
 .kicker {
   font-family: var(--mono);
   font-size: 12px;
