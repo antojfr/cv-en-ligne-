@@ -229,14 +229,16 @@ function toast(msg) {
 // Surligne la section visible dans la navigation
 function watchSections() {
   if (!("IntersectionObserver" in window)) return;
-  const links = [...document.querySelectorAll(".sections a")];
+  const nav = document.querySelector(".sections");
+  const links = [...nav.querySelectorAll("a")];
   const io = new IntersectionObserver(
     (entries) => entries.forEach((en) => {
       if (!en.isIntersecting) return;
       links.forEach((a) => {
         const on = a.getAttribute("href") === `#${en.target.id}`;
         a.classList.toggle("active", on);
-        if (on) a.scrollIntoView({ block: "nearest", inline: "nearest" });
+        // Fait défiler le menu horizontalement seulement, jamais la page
+        if (on) nav.scrollTo({ left: a.offsetLeft - nav.offsetLeft - 16, behavior: "smooth" });
       });
     }),
     { rootMargin: "-45% 0px -50% 0px" }
