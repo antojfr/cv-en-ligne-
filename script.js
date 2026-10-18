@@ -82,6 +82,48 @@ function entry({ when, title, org, details, desc }) {
   </li>`;
 }
 
+// ---------- Courbe de performance (SVG, données réelles du backtest) ----------
+function equityChart(c) {
+  const W = 340, H = 190, L = 30, R = 8, T = 10, B = 22;
+  const n = c.dates.length;
+  const all = [...c.top20, ...c.sp500, ...c.ew];
+  const lo = Math.min(0.75, ...all), hi = Math.max(...all) * 1.04;
+  const x = (i) => L + (i / (n - 1)) * (W - L - R);
+  const y = (v) => T + (1 - (v - lo) / (hi - lo)) * (H - T - B);
+  const path = (s) => s.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join("");
+  const dec = lang === "fr" ? "," : ".";
+  const fmt = (v) => v.toFixed(2).replace(".", dec);
+
+  let grid = "";
+  for (let v = 1; v <= hi; v += 1) {
+    grid += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" class="g"/><text x="${L - 6}" y="${y(v) + 3}" class="ax" text-anchor="end">${v}×</text>`;
+  }
+  c.dates.forEach((d, i) => {
+    if (d.endsWith("-01")) grid += `<text x="${x(i)}" y="${H - 6}" class="ax" text-anchor="middle">${d.slice(0, 4)}</text>`;
+  });
+  const end = (s, cls) => `<circle cx="${x(n - 1)}" cy="${y(s[n - 1])}" r="2.6" class="${cls}"/>`;
+  const ui = lang === "fr"
+    ? { title: "Performance hors échantillon", top: "Top 20 % (modèle)", sp: "S&P 500", ew: "Univers équipondéré", note: "Base 1 début 2019, avant frais. Courbes reprises de la figure du dépôt GitHub." }
+    : { title: "Out-of-sample performance", top: "Top 20% (model)", sp: "S&P 500", ew: "Equal-weight universe", note: "Base 1 at the start of 2019, gross of costs. Curves taken from the GitHub repository's figure." };
+
+  return `<figure class="chart">
+    <figcaption>${esc(ui.title)} · ${esc(c.dates[0].slice(0, 4))}–${esc(c.dates[n - 1].slice(0, 4))}</figcaption>
+    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(ui.title)}">
+      ${grid}
+      <path d="${path(c.ew)}" class="s-ew"/>
+      <path d="${path(c.sp500)}" class="s-sp"/>
+      <path d="${path(c.top20)}" class="s-top"/>
+      ${end(c.ew, "d-ew")}${end(c.sp500, "d-sp")}${end(c.top20, "d-top")}
+    </svg>
+    <ul class="legend">
+      <li class="k-top">${esc(ui.top)} <b>${fmt(c.top20[n - 1])}×</b></li>
+      <li class="k-sp">${esc(ui.sp)} <b>${fmt(c.sp500[n - 1])}×</b></li>
+      <li class="k-ew">${esc(ui.ew)} <b>${fmt(c.ew[n - 1])}×</b></li>
+    </ul>
+    <p class="chart-note">${esc(ui.note)}</p>
+  </figure>`;
+}
+
 function render() {
   const ui = UI[lang];
   document.documentElement.lang = lang;
@@ -135,6 +177,7 @@ function render() {
         <span class="when">${esc(t(x.dates))}</span>
         <h3>${esc(t(x.name))}</h3>
         <p class="desc">${esc(t(x.description))}</p>
+        ${x.chart ? equityChart(x.chart) : ""}
         ${x.metrics ? `<dl class="metrics">${x.metrics.map((m) => `<div><dt>${esc(t(m.k))}</dt><dd>${esc(t(m.v))}</dd></div>`).join("")}</dl>` : ""}
         ${x.note ? `<p class="fine">${esc(t(x.note))}</p>` : ""}
         <p class="stack">${(x.tags || []).map(esc).join(" · ")}</p>
@@ -163,6 +206,25 @@ function setLang(l) {
 }
 
 // ---------- Carte de contact (vCard) ----------
+// Photo chargée à l'avance pour que le clic reste instantané (exigé par iOS)
+let contactPhoto = "";
+function loadContactPhoto() {
+  fetch(P.contactPhoto || P.photo)
+    .then((r) => (r.ok ? r.blob() : Promise.reject()))
+    .then((b) => new Promise((res) => {
+      const fr = new FileReader();
+      fr.onload = () => res(String(fr.result).split(",")[1] || "");
+      fr.readAsDataURL(b);
+    }))
+    .then((b64) => { contactPhoto = b64; })
+    .catch(() => {});
+}
+
+// Les lignes vCard longues sont repliées à 75 caractères
+function fold(line) {
+  return line.match(/.{1,74}/g).join("\r\n ");
+}
+
 function vcard() {
   const lines = [
     "BEGIN:VCARD",
@@ -175,7 +237,9 @@ function vcard() {
     P.linkedin ? `URL;TYPE=LinkedIn:${P.linkedin}` : "",
     P.github ? `URL;TYPE=GitHub:${P.github}` : "",
     `URL:${location.href.split(/[?#]/)[0]}`,
+    "ORG:Mines Alès · Mines Saint-Étienne",
     `NOTE:${t(P.lookingFor)}`,
+    contactPhoto ? fold(`PHOTO;ENCODING=b;TYPE=JPEG:${contactPhoto}`) : "",
     "END:VCARD",
   ];
   return lines.filter(Boolean).join("\r\n");
@@ -272,6 +336,7 @@ function watchSections() {
   if (P.github) $("lnk-github").href = P.github; else $("lnk-github").hidden = true;
 
   $("btn-contact").addEventListener("click", downloadContact);
+  loadContactPhoto();
   $("btn-copy").addEventListener("click", copyEmail);
   watchSections();
 })();
