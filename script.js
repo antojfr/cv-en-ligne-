@@ -22,8 +22,8 @@ const UI = {
     copied: "Adresse copiée",
     footer: "Carte NFC · ",
     toastContact: "Fiche contact téléchargée",
-    mailSubject: (ev) => `Rencontre à ${ev}`,
-    mailBody: (name) => `Bonjour ${name},\n\nNous nous sommes rencontrés au forum. `,
+    mailSubject: (ev) => `Rencontre au ${ev}`,
+    mailBody: (name, ev) => `Bonjour ${name},\n\nNous nous sommes rencontrés au ${ev}. `,
   },
   en: {
     hello: "Thanks for scanning my card.",
@@ -48,7 +48,7 @@ const UI = {
     footer: "NFC card · ",
     toastContact: "Contact card downloaded",
     mailSubject: (ev) => `We met at ${ev}`,
-    mailBody: (name) => `Hi ${name},\n\nWe met at the career fair. `,
+    mailBody: (name, ev) => `Hi ${name},\n\nWe met at ${ev}. `,
   },
 };
 
@@ -67,7 +67,7 @@ function esc(s) {
 function mailto() {
   const ui = UI[lang];
   const subject = encodeURIComponent(ui.mailSubject(t(P.event)));
-  const body = encodeURIComponent(ui.mailBody(P.firstName));
+  const body = encodeURIComponent(ui.mailBody(P.firstName, t(P.event)));
   return `mailto:${P.email}?subject=${subject}&body=${body}`;
 }
 
@@ -96,6 +96,7 @@ function render() {
   });
 
   $("ref").textContent = `${P.lastName.toUpperCase()} A. · ${t(P.location).split(",")[0]}`;
+  $("event").textContent = t(P.eventFull);
   $("hello").textContent = ui.hello;
   $("name").innerHTML = `<span>${esc(P.firstName)}</span><span>${esc(P.lastName)}</span>`;
   $("title").textContent = t(P.title);
@@ -229,14 +230,16 @@ function toast(msg) {
 // Surligne la section visible dans la navigation
 function watchSections() {
   if (!("IntersectionObserver" in window)) return;
-  const links = [...document.querySelectorAll(".sections a")];
+  const nav = document.querySelector(".sections");
+  const links = [...nav.querySelectorAll("a")];
   const io = new IntersectionObserver(
     (entries) => entries.forEach((en) => {
       if (!en.isIntersecting) return;
       links.forEach((a) => {
         const on = a.getAttribute("href") === `#${en.target.id}`;
         a.classList.toggle("active", on);
-        if (on) a.scrollIntoView({ block: "nearest", inline: "nearest" });
+        // Fait défiler le menu horizontalement seulement, jamais la page
+        if (on) nav.scrollTo({ left: a.offsetLeft - nav.offsetLeft - 16, behavior: "smooth" });
       });
     }),
     { rootMargin: "-45% 0px -50% 0px" }
