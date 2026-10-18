@@ -449,6 +449,36 @@ h2 {
 .skills dt { font-family: var(--mono); font-size: 12px; color: var(--amber); }
 .skills dd { margin: 0; font-size: 0.95rem; line-height: 1.5; }
 
+/* Défi « Pas convaincu ? » */
+.challenge { display: grid; gap: 12px; }
+.challenge h2 { margin-bottom: 0; }
+.ch-lead { font-size: 1.15rem; font-weight: 600; line-height: 1.35; }
+.ch-text { color: var(--dim); font-size: 0.93rem; max-width: 62ch; }
+
+#ch-form { display: grid; gap: 12px; margin-top: 4px; }
+#ch-form[hidden] { display: none; }
+#ch-form label { display: grid; gap: 4px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--amber); }
+
+#ch-form input, #ch-form textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--raise);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 16px; /* évite le zoom automatique sur iPhone */
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+#ch-form textarea { resize: vertical; min-height: 110px; }
+#ch-form input:focus, #ch-form textarea:focus { outline: none; border-color: var(--pos); }
+#ch-honey { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+#ch-submit:disabled { opacity: 0.6; }
+.ch-error { color: var(--amber); font-size: 0.9rem; }
+.ch-done { padding: 12px 14px; border: 1px solid var(--pos); color: var(--pos); font-size: 0.95rem; }
+
 /* Contact */
 
 .contact { display: grid; gap: 14px; }
