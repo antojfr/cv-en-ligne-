@@ -48,6 +48,18 @@ const PROFILE = {
     { k: { fr: "Équipe dirigée en Junior-Entreprise", en: "Team led at the Junior Enterprise" }, v: "13" },
   ],
 
+  // Bandeau défilant façon cotations (▲ hausse, ▼ baisse : valeur commençant par « - »)
+  ticker: [
+    { sym: "SHARPE", val: "0.93" },
+    { sym: "TOP20 P.A.", val: "+26.0%" },
+    { sym: "MAE THALES", val: "-12.1%" },
+    { sym: "SAP ROWS", val: "200K" },
+    { sym: "TEAM", val: "13" },
+    { sym: "TOEIC", val: "885" },
+    { sym: "FEATURES", val: "24" },
+    { sym: "STOCK-MONTHS", val: "66K" },
+  ],
+
   about: {
     fr: "Je suis en double diplôme entre les Mines d'Alès et les Mines de Saint-Étienne, en IA et en mathématiques appliquées. Cet été chez Thales, j'ai construit un modèle de prédiction des prix d'achat. En parallèle, je développe un modèle de sélection d'actions sur le S&P 500, que je teste hors échantillon. J'ai aussi travaillé sur la prévision des prix de l'électricité.",
     en: "I am in a double degree between Mines Alès and Mines Saint-Étienne, in AI and applied mathematics. This summer at Thales, I built a model to predict purchase prices. On the side, I am developing a stock selection model on the S&P 500, tested out of sample. I have also worked on electricity price forecasting.",

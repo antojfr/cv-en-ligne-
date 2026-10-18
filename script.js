@@ -207,6 +207,14 @@ function render() {
   $("skills-list").innerHTML = groups.map((g) => `<div><dt>${esc(g.k)}</dt><dd>${esc(g.v)}</dd></div>`).join("");
 }
 
+// ---------- Bandeau défilant ----------
+function renderTicker() {
+  const items = (P.ticker || [])
+    .map((x) => `<span class="tick"><b>${esc(x.sym)}</b> <span class="${/^[-−]/.test(x.val) ? "down" : "up"}">${esc(x.val)}</span></span>`)
+    .join("");
+  $("ticker").innerHTML = items + items; // dupliqué pour une boucle continue
+}
+
 function setLang(l) {
   lang = l === "en" ? "en" : "fr";
   try { localStorage.setItem("lang", lang); } catch (e) {}
@@ -333,15 +341,32 @@ function showLogo(target) {
   const words = target.name.split(/\s+/).filter((w) => /^[A-ZÉ]/.test(w));
   const acronym = words.find((w) => /^[A-Z]{2,4}$/.test(w));
   $("for-initials").textContent = acronym || words.slice(0, 2).map((w) => w[0]).join("");
-  const src = target.logo || (target.domain ? `https://www.google.com/s2/favicons?domain=${target.domain}&sz=128` : "");
-  if (!src) return;
+  // Sources essayées dans l'ordre : fichier local, icône haute résolution du site,
+  // puis services d'icônes de Google et DuckDuckGo
+  const d = target.domain;
+  const sources = [
+    target.logo,
+    d && `https://www.${d}/apple-touch-icon.png`,
+    d && `https://${d}/apple-touch-icon.png`,
+    d && `https://www.google.com/s2/favicons?domain=${d}&sz=128`,
+    d && `https://icons.duckduckgo.com/ip3/${d}.ico`,
+  ].filter(Boolean);
+  tryLogo(box, target, sources);
+}
+
+function tryLogo(box, target, sources) {
+  const src = sources.shift();
+  if (!src) return; // aucune source n'a marché : on garde les initiales
   const img = new Image();
   img.alt = target.name;
+  img.referrerPolicy = "no-referrer";
   img.onload = () => {
-    if (!target.logo && img.naturalWidth < 48) return;
+    // Les icônes génériques (globe 16 px) sont trop petites : source suivante
+    if (src !== target.logo && img.naturalWidth < 32) return tryLogo(box, target, sources);
     box.classList.add("has-img");
     box.prepend(img);
   };
+  img.onerror = () => tryLogo(box, target, sources);
   img.src = src;
 }
 
@@ -375,6 +400,7 @@ function track(action) {
   let saved = null;
   try { saved = localStorage.getItem("lang"); } catch (e) {}
   const nav = (navigator.language || "fr").toLowerCase().startsWith("fr") ? "fr" : "en";
+  renderTicker();
   setLang(params.get("lang") || saved || nav);
 
   document.querySelectorAll(".lang button").forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
