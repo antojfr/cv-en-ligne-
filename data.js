@@ -11,6 +11,7 @@ const PROFILE = {
 
   // Photo carrée dans assets/. Si elle manque, tes initiales s'affichent.
   photo: "assets/photo.jpg",
+  contactPhoto: "assets/contact.jpg", // petite version pour la fiche contact
 
   email: "antoninjaffre@gmail.com",
   phone: "+33 6 29 22 47 31", // ajouté uniquement à la fiche contact (laisser vide pour le retirer)
@@ -60,8 +61,8 @@ const PROFILE = {
   ],
 
   about: {
-    fr: "Double diplôme Mines Alès et Mines Saint-Étienne en IA, data science et mathématiques appliquées. Je construis des modèles qui servent des décisions réelles : prédiction des prix d'achat chez Thales, et mon propre modèle de scoring d'actions du S&P 500, testé hors échantillon.",
-    en: "Double degree at Mines Alès and Mines Saint-Étienne in AI, data science and applied mathematics. I build models that drive real decisions: purchase price prediction at Thales, and my own S&P 500 equity-scoring model, tested out of sample.",
+    fr: "Double diplôme Mines Alès et Mines Saint-Étienne en IA, data science et mathématiques appliquées. Je construis des modèles qui servent des décisions réelles : prédiction des prix d'achat chez Thales, et mon propre modèle de scoring d'actions du S&P 500, testé hors échantillon. Mon terrain : la prévision de prix, sur des achats industriels, l'électricité ou les actions.",
+    en: "Double degree at Mines Alès and Mines Saint-Étienne in AI, data science and applied mathematics. I build models that drive real decisions: purchase price prediction at Thales, and my own S&P 500 equity-scoring model, tested out of sample. My field: price forecasting, whether industrial purchases, electricity or equities.",
   },
 
   // Petit détail mémorable
@@ -105,19 +106,13 @@ const PROFILE = {
       },
     },
     {
-      role: { fr: "Stage de recherche en équipe internationale", en: "Research internship within an international team" },
-      company: "University of Wollongong · Australie / Australia",
-      dates: { fr: "2023", en: "2023" },
-      details: {
-        fr: ["Nanoparticules pour filtres UV de crèmes solaires."],
-        en: ["Nanoparticles for sunscreen UV filters."],
-      },
-    },
-    {
-      role: { fr: "Stages — Maintenance prédictive, analyse industrielle", en: "Internships — Predictive maintenance, industrial analysis" },
-      company: "Orange · Michelin",
+      role: { fr: "Autres stages", en: "Other internships" },
+      company: "University of Wollongong · Orange · Michelin",
       dates: { fr: "2023 – 2025", en: "2023 – 2025" },
-      details: { fr: [], en: [] },
+      details: {
+        fr: ["Recherche en équipe internationale en Australie (nanoparticules pour filtres UV) ; maintenance prédictive et analyse industrielle en France."],
+        en: ["Research within an international team in Australia (nanoparticles for UV filters); predictive maintenance and industrial analysis in France."],
+      },
     },
   ],
 
@@ -161,6 +156,13 @@ const PROFILE = {
       description: {
         fr: "Sélection mensuelle d'actions, long-only et long-short, avec backtest complet. 24 variables construites à partir des prix bruts (momentum, volatilité, beta, drawdown, taille, macro), ~66 000 actions-mois ; régression logistique L2 codée from scratch (identique à scikit-learn à 4 décimales), validation walk-forward.",
         en: "Monthly stock selection, long-only and long-short, with full backtest. 24 features built from raw prices (momentum, volatility, beta, drawdown, size, macro), ~66,000 stock-months; L2 logistic regression coded from scratch (matches scikit-learn to 4 d.p.), walk-forward validation.",
+      },
+      // Performance cumulée mensuelle (base 1, avant frais), relevée sur assets/equity_curve.png du dépôt
+      chart: {
+        dates: ["2019-01", "2019-02", "2019-03", "2019-04", "2019-05", "2019-06", "2019-07", "2019-08", "2019-09", "2019-10", "2019-11", "2019-12", "2020-01", "2020-02", "2020-03", "2020-04", "2020-05", "2020-06", "2020-07", "2020-08", "2020-09", "2020-10", "2020-11", "2020-12", "2021-01", "2021-02", "2021-03", "2021-04", "2021-05", "2021-06", "2021-07", "2021-08", "2021-09", "2021-10", "2021-11", "2021-12", "2022-01", "2022-02", "2022-03", "2022-04", "2022-05", "2022-06", "2022-07", "2022-08", "2022-09", "2022-10", "2022-11", "2022-12", "2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06", "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12", "2024-01", "2024-02", "2024-03", "2024-04", "2024-05", "2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11"],
+        top20: [1.047, 1.052, 1.118, 1.014, 1.106, 1.122, 1.097, 1.129, 1.16, 1.219, 1.267, 1.24, 1.138, 0.914, 1.102, 1.183, 1.215, 1.292, 1.373, 1.332, 1.359, 1.552, 1.644, 1.68, 1.906, 2.051, 2.157, 2.207, 2.236, 2.232, 2.295, 2.232, 2.352, 2.338, 2.453, 2.309, 2.293, 2.322, 2.187, 2.182, 1.965, 2.196, 2.144, 1.99, 2.178, 2.383, 2.266, 2.528, 2.517, 2.51, 2.481, 2.526, 2.777, 2.912, 2.869, 2.709, 2.578, 2.842, 3.075, 3.111, 3.256, 3.398, 3.188, 3.249, 3.276, 3.405, 3.455, 3.599, 3.538, 3.679, 3.502],
+        sp500: [1.034, 1.054, 1.09, 1.032, 1.088, 1.104, 1.086, 1.106, 1.127, 1.165, 1.194, 1.197, 1.097, 0.971, 1.066, 1.129, 1.151, 1.203, 1.292, 1.253, 1.219, 1.339, 1.389, 1.377, 1.418, 1.475, 1.549, 1.561, 1.592, 1.628, 1.66, 1.601, 1.701, 1.694, 1.759, 1.674, 1.626, 1.674, 1.531, 1.522, 1.409, 1.524, 1.45, 1.332, 1.439, 1.509, 1.427, 1.509, 1.475, 1.52, 1.542, 1.561, 1.64, 1.696, 1.667, 1.583, 1.563, 1.687, 1.769, 1.8, 1.893, 1.94, 1.873, 1.949, 2.022, 2.047, 2.09, 2.132, 2.119, 2.23, 2.189],
+        ew: [1.047, 1.063, 1.102, 1.045, 1.115, 1.131, 1.115, 1.145, 1.16, 1.199, 1.235, 1.235, 1.133, 0.95, 1.075, 1.14, 1.158, 1.212, 1.267, 1.237, 1.235, 1.402, 1.457, 1.448, 1.531, 1.626, 1.694, 1.735, 1.741, 1.771, 1.814, 1.753, 1.85, 1.825, 1.931, 1.852, 1.834, 1.891, 1.782, 1.778, 1.646, 1.775, 1.728, 1.59, 1.744, 1.863, 1.787, 1.902, 1.857, 1.861, 1.87, 1.83, 1.967, 2.035, 1.988, 1.895, 1.836, 2.006, 2.135, 2.139, 2.234, 2.329, 2.232, 2.288, 2.309, 2.392, 2.465, 2.519, 2.503, 2.646, 2.492],
       },
       // Résultats affichés sous forme de mini-tableau
       metrics: [
