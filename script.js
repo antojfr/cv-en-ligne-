@@ -154,6 +154,7 @@ function render() {
     $("for-box").hidden = false;
     $("for-to").textContent = `${ui.forTo} ${TARGET.name}`;
     $("for-msg").textContent = t(TARGET.msg);
+    showLogo(TARGET);
     document.title = `CV ${fullName}, ${TARGET.name}`;
   }
 
@@ -320,6 +321,28 @@ function watchSections() {
     const target = document.querySelector(a.getAttribute("href"));
     if (target) io.observe(target);
   });
+}
+
+// ---------- Logo de l'entreprise ciblée ----------
+// Fichier local si fourni, sinon icône du site via le service de Google.
+// Si l'image manque ou est trop petite (icône générique), on garde les initiales.
+function showLogo(target) {
+  const box = $("for-logo");
+  if (box.dataset.done) return;
+  box.dataset.done = "1";
+  const words = target.name.split(/\s+/).filter((w) => /^[A-ZÉ]/.test(w));
+  const acronym = words.find((w) => /^[A-Z]{2,4}$/.test(w));
+  $("for-initials").textContent = acronym || words.slice(0, 2).map((w) => w[0]).join("");
+  const src = target.logo || (target.domain ? `https://www.google.com/s2/favicons?domain=${target.domain}&sz=128` : "");
+  if (!src) return;
+  const img = new Image();
+  img.alt = target.name;
+  img.onload = () => {
+    if (!target.logo && img.naturalWidth < 48) return;
+    box.classList.add("has-img");
+    box.prepend(img);
+  };
+  img.src = src;
 }
 
 // ---------- Compteur de visites (GoatCounter, sans cookies) ----------
