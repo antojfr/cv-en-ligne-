@@ -4,139 +4,125 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Antonin Jaffré — CV</title>
-  <meta name="description" content="Antonin Jaffré — Data Science & Finance quantitative. CV en ligne, contact, LinkedIn, GitHub.">
-  <meta name="theme-color" content="#070b14">
-  <meta property="og:title" content="Antonin Jaffré — CV">
+  <meta name="description" content="Antonin Jaffré · Data Science & Finance quantitative · Mines Alès / Mines Saint-Étienne">
+  <meta name="theme-color" content="#07090c">
+  <meta name="color-scheme" content="dark">
+  <meta property="og:title" content="Antonin Jaffré">
   <meta property="og:description" content="Data Science & Quantitative Finance · Mines Alès / Mines Saint-Étienne">
   <meta property="og:image" content="assets/photo.jpg">
   <link rel="icon" href="assets/photo.jpg">
   <link rel="apple-touch-icon" href="assets/photo.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,700..900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="grid-bg" aria-hidden="true"></div>
-
-  <!-- Bandeau défilant -->
   <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
 
-  <header class="topbar">
-    <span class="brand" id="brand"></span>
-    <div class="lang" role="group" aria-label="Langue / Language">
-      <button data-lang="fr">FR</button>
-      <button data-lang="en">EN</button>
+  <header class="bar">
+    <div class="wrap bar-inner">
+      <span class="ref" id="ref"></span>
+      <div class="lang" role="group" aria-label="Langue / Language">
+        <button data-lang="fr">FR</button>
+        <button data-lang="en">EN</button>
+      </div>
     </div>
   </header>
 
-  <main>
-    <!-- Carte de visite -->
-    <section class="hero">
-      <div class="id-row">
-        <div class="avatar">
-          <img id="photo" alt="">
-          <span id="initials"></span>
-        </div>
-        <div>
-          <p class="hello" id="hello"></p>
-          <h1 id="name"></h1>
-          <p class="title" id="title"></p>
-        </div>
+  <main class="wrap">
+    <!-- En-tête -->
+    <section class="hero" id="top">
+      <div class="hero-text">
+        <p class="kicker" id="hello"></p>
+        <h1 id="name"></h1>
+        <p class="title" id="title"></p>
       </div>
+      <figure class="portrait">
+        <img id="photo" alt="">
+        <span id="initials"></span>
+      </figure>
+    </section>
 
-      <p class="status"><span class="dot"></span><span id="looking"></span></p>
+    <p class="status"><span class="status-tag" data-i18n="available"></span><span id="looking"></span></p>
 
-      <div class="stats" id="highlights"></div>
-
-      <div class="actions">
-        <a class="btn primary" id="btn-contact" href="#">
-          <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
-          <span data-i18n="addContact"></span>
-        </a>
-        <a class="btn ghost" id="btn-cv" href="#">
-          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+    <div class="actions">
+      <a class="btn primary" id="btn-contact" href="#">
+        <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+        <span data-i18n="addContact"></span>
+      </a>
+      <div class="links">
+        <a class="btn" id="btn-cv" href="#">
+          <svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
           <span data-i18n="downloadCv"></span>
         </a>
-      </div>
-
-      <div class="socials">
-        <a id="lnk-linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" class="fill"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        <a class="btn" id="lnk-linkedin" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" class="fill"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
           <span>LinkedIn</span>
         </a>
-        <a id="lnk-github" target="_blank" rel="noopener" aria-label="GitHub">
-          <svg viewBox="0 0 24 24" class="fill"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57v-2.23c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .32.21.7.82.58A12 12 0 0 0 12 .3"/></svg>
+        <a class="btn" id="lnk-github" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" class="fill"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57v-2.23c-3.34.73-4.04-1.42-4.04-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.220v3.29c0 .32.21.7.82.58A12 12 0 0 0 12 .3"/></svg>
           <span>GitHub</span>
         </a>
-        <a id="lnk-mail" aria-label="Email">
-          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+        <a class="btn" id="lnk-mail">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/></svg>
           <span>Email</span>
         </a>
       </div>
-    </section>
+    </div>
 
-    <!-- CV en onglets -->
-    <nav class="tabs" role="tablist" id="tabs">
-      <button role="tab" data-tab="profile" data-i18n="tabProfile"></button>
-      <button role="tab" data-tab="experience" data-i18n="tabExperience"></button>
-      <button role="tab" data-tab="projects" data-i18n="projects"></button>
-      <button role="tab" data-tab="education" data-i18n="tabEducation"></button>
-      <button role="tab" data-tab="skills" data-i18n="tabSkills"></button>
+    <!-- Navigation de sections -->
+    <nav class="sections" aria-label="Sections">
+      <a href="#figures" data-i18n="navFigures"></a>
+      <a href="#experience" data-i18n="experience"></a>
+      <a href="#projects" data-i18n="projects"></a>
+      <a href="#education" data-i18n="education"></a>
+      <a href="#skills" data-i18n="skills"></a>
     </nav>
 
-    <section class="panel" data-panel="profile" role="tabpanel">
-      <div class="card">
-        <h2 data-i18n="about"></h2>
-        <p id="about"></p>
-        <p class="meta" id="location"></p>
-      </div>
-      <div class="card funfact">
-        <span class="label">⚡ <span data-i18n="funFact"></span></span>
-        <p id="funfact"></p>
-      </div>
+    <section class="block" id="figures">
+      <h2 data-i18n="keyFigures"></h2>
+      <dl class="figures" id="key-figures"></dl>
+      <p class="about" id="about"></p>
     </section>
 
-    <section class="panel" data-panel="experience" role="tabpanel">
-      <div class="card"><ol class="timeline" id="experience"></ol></div>
+    <section class="block" id="experience">
+      <h2 data-i18n="experience"></h2>
+      <ol class="entries" id="experience-list"></ol>
     </section>
 
-    <section class="panel" data-panel="projects" role="tabpanel">
-      <div class="projects" id="projects"></div>
+    <section class="block" id="projects">
+      <h2 data-i18n="projects"></h2>
+      <div class="entries" id="projects-list"></div>
     </section>
 
-    <section class="panel" data-panel="education" role="tabpanel">
-      <div class="card"><ol class="timeline" id="education"></ol></div>
+    <section class="block" id="education">
+      <h2 data-i18n="education"></h2>
+      <ol class="entries" id="education-list"></ol>
     </section>
 
-    <section class="panel" data-panel="skills" role="tabpanel">
-      <div class="card">
-        <div id="skills"></div>
-      </div>
-      <div class="card two-col">
-        <div>
-          <h2 data-i18n="languages"></h2>
-          <ul class="plain" id="languages"></ul>
-        </div>
-        <div>
-          <h2 data-i18n="interests"></h2>
-          <div class="tags" id="interests"></div>
-        </div>
-      </div>
+    <section class="block" id="skills">
+      <h2 data-i18n="skills"></h2>
+      <dl class="skills" id="skills-list"></dl>
     </section>
 
-    <!-- Appel à l'action final -->
-    <section class="card cta">
+    <section class="block note">
+      <h2 data-i18n="funFact"></h2>
+      <p id="funfact"></p>
+    </section>
+
+    <section class="block contact">
       <h2 data-i18n="ctaTitle"></h2>
       <p data-i18n="ctaText"></p>
       <a class="btn primary" id="btn-mail-cta" href="#">
-        <svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
         <span data-i18n="ctaButton"></span>
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
+      <p class="mail-line"><span id="mail-text"></span> <button class="copy" id="btn-copy" data-i18n="copy"></button></p>
     </section>
   </main>
 
-  <footer id="footer"></footer>
+  <footer class="wrap" id="footer"></footer>
 
   <script src="data.js"></script>
   <script src="script.js"></script>

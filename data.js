@@ -19,8 +19,8 @@ const PROFILE = {
   linkedin: "https://www.linkedin.com/in/antonin-jaffr%C3%A9",
   github: "https://github.com/antojfr",
 
-  // Le même CV (anglais) est proposé dans les deux langues.
-  cvPdf: { fr: "cv/cv-en.pdf", en: "cv/cv-en.pdf" },
+  // CV PDF par langue (le français est la traduction exacte de l'anglais).
+  cvPdf: { fr: "cv/cv-fr.pdf", en: "cv/cv-en.pdf" },
 
   // Nom de l'événement : utilisé dans l'objet du mail.
   event: { fr: "le forum entreprises", en: "the career fair" },
@@ -36,34 +36,37 @@ const PROFILE = {
     en: "6-month internship · financial markets & quantitative modelling · from March 2027",
   },
 
-  // Chiffres clés (animés à l'ouverture)
-  highlights: [
-    { value: { fr: "−12,1 %", en: "−12.1%" }, label: { fr: "d'erreur de prédiction chez Thales", en: "prediction error at Thales" } },
-    { value: { fr: "0,93", en: "0.93" }, label: { fr: "Sharpe hors échantillon (S&P 500 : 0,85)", en: "out-of-sample Sharpe (S&P 500: 0.85)" } },
-    { value: "13", label: { fr: "personnes dirigées en Junior-Entreprise", en: "people led at Junior Enterprise" } },
+  // Chiffres clés : affichés comme le tableau d'une fiche de fonds
+  keyFigures: [
+    { k: { fr: "Erreur de prédiction vs méthode en place (Thales)", en: "Prediction error vs incumbent method (Thales)" }, v: { fr: "−12,1 %", en: "−12.1%" } },
+    { k: { fr: "Sharpe hors échantillon, net de frais", en: "Out-of-sample Sharpe, net of costs" }, v: { fr: "0,93", en: "0.93" }, ref: { fr: "S&P 500 : 0,85", en: "S&P 500: 0.85" } },
+    { k: { fr: "Rendement portefeuille top 20 %", en: "Top-20% portfolio return" }, v: { fr: "26,0 %/an", en: "26.0% p.a." }, ref: { fr: "2019–2024", en: "2019–2024" } },
+    { k: { fr: "Lignes SAP modélisées", en: "SAP records modelled" }, v: { fr: "200 000", en: "200,000" } },
+    { k: { fr: "Équipe dirigée (Junior-Entreprise)", en: "Team led (Junior Enterprise)" }, v: "13" },
+    { k: { fr: "TOEIC", en: "TOEIC" }, v: "885" },
   ],
 
-  // Bandeau défilant façon cotations boursières
+  // Bandeau défilant façon cotations
   ticker: [
-    { sym: "SHARPE", val: "0.93", up: true },
-    { sym: "TOP20 P.A.", val: "+26.0%", up: true },
-    { sym: "MAE THALES", val: "−12.1%", up: true },
-    { sym: "SAP ROWS", val: "200K", up: true },
-    { sym: "TEAM", val: "13", up: true },
-    { sym: "TOEIC", val: "885", up: true },
-    { sym: "FEATURES", val: "24", up: true },
-    { sym: "STOCK-MONTHS", val: "66K", up: true },
+    { sym: "SHARPE", val: "0.93" },
+    { sym: "TOP20 P.A.", val: "+26.0%" },
+    { sym: "MAE THALES", val: "−12.1%" },
+    { sym: "SAP ROWS", val: "200K" },
+    { sym: "TEAM", val: "13" },
+    { sym: "TOEIC", val: "885" },
+    { sym: "FEATURES", val: "24" },
+    { sym: "STOCK-MONTHS", val: "66K" },
   ],
 
   about: {
-    fr: "Double diplôme Mines Alès / Mines Saint-Étienne en IA, data science et mathématiques appliquées. J'aime transformer des données brutes en modèles qui servent vraiment des décisions — de la prédiction de prix d'achat chez Thales à mon propre modèle de scoring d'actions du S&P 500, backtesté hors échantillon.",
-    en: "Double degree at Mines Alès / Mines Saint-Étienne in AI, data science and applied mathematics. I love turning raw data into models that actually drive decisions — from purchase price prediction at Thales to my own S&P 500 equity-scoring model, backtested out of sample.",
+    fr: "Double diplôme Mines Alès et Mines Saint-Étienne en IA, data science et mathématiques appliquées. Je construis des modèles qui servent des décisions réelles : prédiction des prix d'achat chez Thales, et mon propre modèle de scoring d'actions du S&P 500, testé hors échantillon.",
+    en: "Double degree at Mines Alès and Mines Saint-Étienne in AI, data science and applied mathematics. I build models that drive real decisions: purchase price prediction at Thales, and my own S&P 500 equity-scoring model, tested out of sample.",
   },
 
   // Petit détail mémorable
   funFact: {
-    fr: "Joueur de poker : estimer des probabilités et décider sous incertitude, c'est déjà un peu mon futur métier. (Et cette page s'est ouverte grâce à une puce NFC que j'ai programmée moi-même.)",
-    en: "Poker player: estimating probabilities and deciding under uncertainty is already a bit of my future job. (And this page opened thanks to an NFC chip I programmed myself.)",
+    fr: "Je joue au poker : estimer des probabilités et décider sous incertitude, c'est le cœur du métier que je vise. Cette page s'est ouverte grâce à une puce NFC que j'ai programmée moi-même.",
+    en: "I play poker: estimating probabilities and deciding under uncertainty is the core of the job I'm aiming for. This page opened from an NFC chip I programmed myself.",
   },
 
   experience: [

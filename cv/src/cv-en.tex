@@ -1,0 +1,134 @@
+\documentclass[a4paper,10pt]{article}
+
+% --- PACKAGES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage[left=1.15cm,right=1.15cm,top=0.95cm,bottom=0.95cm]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{qrcode}
+
+% --- STYLE ---
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\linespread{0.95}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,
+    urlcolor=black,
+}
+
+\titleformat{\section}{\large\scshape\bfseries}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{8pt}{3pt}
+
+% --- CUSTOM COMMANDS ---
+% #4 = URL encoded in the QR code (GitHub or portfolio)
+\newcommand{\makeheader}[4]{
+    \noindent
+    \begin{minipage}[c]{0.09\textwidth}~\end{minipage}%
+    \hfill
+    \begin{minipage}[c]{0.74\textwidth}
+        \centering
+        {\huge \textbf{\textsc{#1}}} \\ \vspace{6pt}
+        #2 \\ \vspace{4pt}
+        \small{\textit{#3}}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[c]{0.15\textwidth}
+        \raggedleft
+        \qrcode[height=2.1cm]{#4} \\ \vspace{2pt}
+        \tiny\textsc{GitHub}
+    \end{minipage}
+    \vspace{4pt}
+}
+
+\newcommand{\cventry}[4]{
+    \vspace{2pt}
+    \noindent \textbf{#1} \hfill #2 \\
+    \noindent \textit{#3} \hfill \textbf{#4}
+}
+
+\newenvironment{cvbullets}{
+    \begin{itemize}[itemsep=1.5pt, topsep=2pt, leftmargin=1.1em, label=\tiny$\bullet$]
+}{
+    \end{itemize} \vspace{1pt}
+}
+
+\begin{document}
+
+% 1. HEADER
+\makeheader{Antonin Jaffré}
+    {+33 6 29 22 47 31 $\cdot$ \href{mailto:antoninjaffre@gmail.com}{antoninjaffre@gmail.com} $\cdot$ \href{https://www.linkedin.com/in/antonin-jaffr\%C3\%A9}{LinkedIn} $\cdot$ \href{https://github.com/antojfr}{GitHub}}
+    {Seeking a 6-month internship in financial markets and quantitative modelling, from March 2027}
+    {https://github.com/antojfr}
+
+% 2. EDUCATION
+\section{Education}
+
+\cventry{École des Mines de Saint-Étienne}{Saint-Étienne, France}{MSc in Applied Mathematics and Statistics $\cdot$ Mathematics in Action track (MAEA)}{2026 - 2027}
+\begin{cvbullets}
+    \item National Master's degree \textbf{co-accredited with École Centrale de Lyon and ENS de Lyon}.
+    \item \textit{Mathematics and Machine Learning for Engineering} stream: probability and stochastic processes, Monte Carlo methods, optimisation, statistical learning, high-performance computing.
+\end{cvbullets}
+
+\cventry{École des Mines d'Alès}{Alès, France}{Diplôme d'Ingénieur (5-year MSc-equivalent engineering degree) $\cdot$ AI \& Data Science}{2024 - 2027}
+\begin{cvbullets}
+    \item Double degree with École des Mines de Saint-Étienne. Machine learning, statistical modelling, software engineering.
+\end{cvbullets}
+
+\cventry{Lycée Lafayette}{Clermont-Ferrand, France}{Intensive preparatory course (CPGE-ATS) for competitive entry to French engineering grandes écoles}{2023 - 2024}
+
+\cventry{Université Clermont Auvergne}{Clermont-Ferrand, France}{Two-year technical degree (DUT) in Physical Measurement and Instrumentation}{2021 - 2023}
+
+% 3. EXPERIENCE
+\section{Experience}
+
+\cventry{Thales}{Brive-la-Gaillarde, France}{Internship: purchase price projection and prediction (Industrial Controlling)}{May - Aug. 2026}
+\begin{cvbullets}
+    \item \textbf{Pricing engine (main deliverable).} Automated the annual year-ahead price projection campaign by translating management-control rules into a Python engine, with results delivered to buyers and automated reconciliation checks.
+    \item \textbf{Machine learning price prediction.} Order-level price variation model built on $\sim$200,000 cleansed SAP purchasing records (28,000 part numbers, 2017--2026): LightGBM, Optuna, time-based cross-validation. \textbf{12.1\% lower mean absolute error} than the incumbent method.
+\end{cvbullets}
+
+\cventry{Phytocontrol Laboratory}{Nîmes, France}{Internship: economic performance analyst (Data \& BI)}{Nov. - Dec. 2025}
+\begin{cvbullets}
+    \item Pricing and profitability analysis (selling prices, cost of goods sold) on key accounts (Suez, Nestlé); financial data structuring in Power Query and Power BI dashboards for margin monitoring.
+\end{cvbullets}
+
+\cventry{University of Wollongong}{Wollongong, Australia}{Research internship within an international team: nanoparticles for sunscreen UV filters}{2023}
+
+\cventry{Orange $\cdot$ Michelin}{France}{Internships: predictive maintenance, industrial analysis}{2023 - 2025}
+\vspace{3pt}
+
+% 4. PROJECTS
+\section{Quantitative Projects \& Leadership}
+
+\cventry{S\&P 500 cross-sectional equity scoring}{Personal project $\cdot$ \href{https://github.com/antojfr/sp500-quant-scoring}{GitHub}}{Monthly stock selection, long-only and long-short, with full backtest}{2025 to present}
+\begin{cvbullets}
+    \item 24 features built from raw prices (momentum, volatility, beta, drawdown, size, macro), $\sim$66,000 stock-months; L2 logistic regression coded from scratch (matches scikit-learn to 4 d.p.), \textit{walk-forward} validation.
+    \item Out-of-sample 2019--2024, net of costs: top-20\% portfolio \textbf{26.0\% p.a., Sharpe 0.93} vs.\ 0.85 for the S\&P 500; CAPM shows excess return driven by beta (1.33), alpha +4.8\% not significant ($t = 1.12$).
+\end{cvbullets}
+
+\cventry{Machine Learning projects}{École des Mines d'Alès}{Algorithms \textit{from scratch} \& deep learning}{2024 - 2025}
+\begin{cvbullets}
+    \item \textbf{Credit scoring:} decision tree implemented entirely without libraries. \textbf{Energy procurement optimisation:} neural network (TensorFlow/Keras) to optimise electricity purchase prices for municipalities in Occitanie.
+\end{cvbullets}
+
+\cventry{Mines Alès Junior Étude}{Alès, France}{President, student-run consulting firm}{May 2025 to present}
+\begin{cvbullets}
+    \item Led a team of 13; secured official CNJE accreditation; managed the project lifecycle and client partnerships.
+\end{cvbullets}
+
+% 5. SKILLS
+\section{Skills \& Certifications}
+
+\begin{itemize}[itemsep=1.5pt, topsep=2pt, leftmargin=1.1em, label=\tiny$\bullet$]
+    \item \textbf{Technical:} Python (Pandas, NumPy, Scikit-learn, LightGBM, Optuna, TensorFlow), C, Java, SQL, R, Power BI, Excel (Power Query).
+    \item \textbf{Certifications:} IBM Machine Learning $\cdot$ Yale Financial Markets (R. Shiller) $\cdot$ Stanford ML Specialization (A. Ng).
+    \item \textbf{Languages:} French (native), English (TOEIC 885), Spanish (A2). \quad \textbf{Interests:} quant investing, poker, swimming.
+\end{itemize}
+
+\end{document}
