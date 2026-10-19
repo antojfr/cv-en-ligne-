@@ -56,7 +56,7 @@ const PROFILE = {
   ],
 
   about: {
-    fr: "Je suis en double diplôme entre les Mines d'Alès et les Mines de Saint-Étienne, en IA et en mathématiques appliquées. Cet été chez Thales, j'ai construit un modèle de prédiction des prix d'achat. En parallèle, je développe un modèle de sélection d'actions sur le S&P 500, que je teste hors échantillon. J'ai aussi travaillé sur la prévision des prix de l'électricité.",
+    fr: "Je suis en double diplôme entre les Mines d'Alès (ingénieur IA et data science) et les Mines de Saint-Étienne (master de mathématiques appliquées). Cet été, chez Thales, j'ai construit un modèle de prédiction des prix d'achat. En parallèle, je développe un modèle de sélection d'actions sur le S&P 500, que je teste hors échantillon. J'ai aussi travaillé sur la prévision des prix de l'électricité.",
     en: "I am in a double degree between Mines Alès and Mines Saint-Étienne, in AI and applied mathematics. This summer at Thales, I built a model to predict purchase prices. On the side, I am developing a stock selection model on the S&P 500, tested out of sample. I have also worked on electricity price forecasting.",
   },
 
@@ -67,8 +67,8 @@ const PROFILE = {
       dates: { fr: "Mai - Août 2026", en: "May - Aug. 2026" },
       details: {
         fr: [
-          "Moteur de pricing (livrable principal). Automatisation de la campagne annuelle de projection des prix N+1 en traduisant les règles du contrôle de gestion dans un moteur Python, résultats livrés aux acheteurs avec contrôles de concordance automatisés.",
-          "Prédiction de prix par machine learning. Modèle de variation de prix par commande sur ~200 000 lignes d'achats SAP fiabilisées (28 000 références, 2017-2026) avec LightGBM, Optuna et validation croisée temporelle. Erreur absolue moyenne inférieure de 12,1 % à la méthode en place.",
+          "Moteur de pricing (livrable principal). Automatisation de la projection annuelle des prix d'achat pour l'année suivante : les règles du contrôle de gestion sont codées dans un moteur Python, et les résultats sont transmis aux acheteurs après des vérifications automatiques de cohérence.",
+          "Prédiction des prix par machine learning. Modèle qui prédit la variation de prix de chaque commande, entraîné sur environ 200 000 lignes d'achat SAP nettoyées (28 000 références, 2017-2026) avec LightGBM, Optuna et une validation croisée qui respecte l'ordre chronologique. Erreur absolue moyenne inférieure de 12,1 % à celle de la méthode en place.",
         ],
         en: [
           "Pricing engine (main deliverable). Automated the annual year-ahead price projection campaign by translating management-control rules into a Python engine, with results delivered to buyers and automated reconciliation checks.",
@@ -77,20 +77,20 @@ const PROFILE = {
       },
     },
     {
-      role: { fr: "Président du cabinet de conseil étudiant", en: "President of the student-run consulting firm" },
+      role: { fr: "Président de la Junior-Entreprise (cabinet de conseil étudiant)", en: "President of the student-run consulting firm" },
       company: "Mines Alès Junior Étude",
       dates: { fr: "Depuis mai 2025", en: "Since May 2025" },
       details: {
-        fr: ["Direction d'une équipe de 13 personnes ; obtention du label officiel CNJE ; pilotage du cycle de vie des projets et des partenariats clients."],
+        fr: ["Direction d'une équipe de 13 personnes. Obtention du label officiel de la CNJE (Confédération nationale des Junior-Entreprises). Gestion des missions de A à Z et des relations avec les clients."],
         en: ["Led a team of 13; secured official CNJE accreditation; managed the project lifecycle and client partnerships."],
       },
     },
     {
-      role: { fr: "Stage : analyste performance économique (data et BI)", en: "Internship: economic performance analyst (data and BI)" },
+      role: { fr: "Stage : analyste de la performance économique (data et BI)", en: "Internship: economic performance analyst (data and BI)" },
       company: "Phytocontrol Laboratory, Nîmes",
       dates: { fr: "Nov. - Déc. 2025", en: "Nov. - Dec. 2025" },
       details: {
-        fr: ["Analyse de pricing et de rentabilité (prix de vente, coût de revient) sur comptes clés (Suez, Nestlé) ; structuration des données financières sous Power Query et tableaux de bord Power BI pour le suivi des marges."],
+        fr: ["Analyse des prix de vente, des coûts de revient et de la rentabilité sur les grands comptes (Suez, Nestlé). Mise en forme des données financières avec Power Query et tableaux de bord Power BI pour suivre les marges."],
         en: ["Pricing and profitability analysis (selling prices, cost of goods sold) on key accounts (Suez, Nestlé); financial data structuring in Power Query and Power BI dashboards for margin monitoring."],
       },
     },
@@ -99,7 +99,7 @@ const PROFILE = {
       company: "University of Wollongong, Orange, Michelin",
       dates: { fr: "2023 - 2025", en: "2023 - 2025" },
       details: {
-        fr: ["Recherche en équipe internationale en Australie (nanoparticules pour filtres UV) ; maintenance prédictive et analyse industrielle en France."],
+        fr: ["Stage de recherche en Australie, dans une équipe internationale (nanoparticules pour les filtres UV des crèmes solaires). En France : maintenance prédictive et analyse industrielle."],
         en: ["Research within an international team in Australia (nanoparticles for UV filters); predictive maintenance and industrial analysis in France."],
       },
     },
@@ -107,25 +107,25 @@ const PROFILE = {
 
   education: [
     {
-      degree: { fr: "Master Mathématiques appliquées et statistique, parcours MAEA", en: "MSc Applied Mathematics and Statistics, Mathematics in Action track (MAEA)" },
+      degree: { fr: "Master Mathématiques appliquées, statistique (parcours Mathématiques en action)", en: "MSc Applied Mathematics and Statistics, Mathematics in Action track (MAEA)" },
       school: "École des Mines de Saint-Étienne",
       dates: { fr: "2026 - 2027", en: "2026 - 2027" },
       details: {
-        fr: "Master national co-accrédité avec l'École Centrale de Lyon et l'ENS de Lyon. Filière Mathématiques & Machine Learning : probabilités et processus stochastiques, Monte-Carlo, optimisation, apprentissage statistique, calcul haute performance.",
+        fr: "Master délivré conjointement avec l'École Centrale de Lyon et l'ENS de Lyon. Filière mathématiques et machine learning pour l'ingénierie : probabilités et processus stochastiques, méthodes de Monte-Carlo, optimisation, apprentissage statistique, calcul haute performance.",
         en: "National Master's degree co-accredited with École Centrale de Lyon and ENS de Lyon. Mathematics & Machine Learning stream: probability and stochastic processes, Monte Carlo methods, optimisation, statistical learning, high-performance computing.",
       },
     },
     {
-      degree: { fr: "Diplôme d'ingénieur, IA et data science", en: "Diplôme d'Ingénieur (5-year MSc equivalent), AI and data science" },
+      degree: { fr: "Diplôme d'ingénieur (bac+5), IA et data science", en: "Diplôme d'Ingénieur (5-year MSc equivalent), AI and data science" },
       school: "École des Mines d'Alès",
       dates: { fr: "2024 - 2027", en: "2024 - 2027" },
       details: {
-        fr: "Double diplôme avec l'École des Mines de Saint-Étienne. Machine learning, modélisation statistique, génie logiciel.",
+        fr: "Double diplôme avec les Mines de Saint-Étienne. Machine learning, modélisation statistique, génie logiciel.",
         en: "Double degree with École des Mines de Saint-Étienne. Machine learning, statistical modelling, software engineering.",
       },
     },
     {
-      degree: { fr: "Classe préparatoire (CPGE-ATS) aux grandes écoles d'ingénieurs", en: "Intensive preparatory course (CPGE-ATS) for French engineering grandes écoles" },
+      degree: { fr: "Prépa ATS : classe préparatoire aux écoles d'ingénieurs, après un bac+2", en: "Intensive preparatory course (CPGE-ATS) for French engineering grandes écoles" },
       school: "Lycée Lafayette, Clermont-Ferrand",
       dates: { fr: "2023 - 2024", en: "2023 - 2024" },
       details: { fr: "", en: "" },
@@ -141,10 +141,10 @@ const PROFILE = {
   projects: [
     {
       id: "sp500",
-      name: { fr: "Scoring cross-sectionnel d'actions S&P 500", en: "S&P 500 cross-sectional equity scoring" },
+      name: { fr: "Scoring des actions du S&P 500", en: "S&P 500 cross-sectional equity scoring" },
       dates: { fr: "Depuis 2025", en: "Since 2025" },
       description: {
-        fr: "Sélection mensuelle d'actions, long-only et long-short, avec backtest complet. 24 variables construites à partir des prix bruts (momentum, volatilité, beta, drawdown, taille, macro), ~66 000 actions-mois ; régression logistique L2 codée from scratch (identique à scikit-learn à 4 décimales), validation walk-forward.",
+        fr: "Chaque mois, le modèle note les actions et construit deux portefeuilles, long-only et long-short, évalués par un backtest complet. 24 variables calculées à partir des prix (momentum, volatilité, bêta, drawdown, taille, macro), sur environ 66 000 observations action-mois. Régression logistique (pénalité L2) codée de zéro, identique à scikit-learn à 4 décimales. Validation glissante dans le temps (walk-forward).",
         en: "Monthly stock selection, long-only and long-short, with full backtest. 24 features built from raw prices (momentum, volatility, beta, drawdown, size, macro), ~66,000 stock-months; L2 logistic regression coded from scratch (matches scikit-learn to 4 d.p.), walk-forward validation.",
       },
       // Performance cumulée mensuelle (base 1, avant frais), relevée sur assets/equity_curve.png du dépôt
@@ -156,13 +156,13 @@ const PROFILE = {
       },
       // Résultats affichés sous forme de mini-tableau
       metrics: [
-        { k: { fr: "Rendement top 20 %", en: "Top-20% return" }, v: { fr: "26,0 %/an", en: "26.0% p.a." } },
+        { k: { fr: "Rendement du top 20 %", en: "Top-20% return" }, v: { fr: "26,0 % par an", en: "26.0% p.a." } },
         { k: { fr: "Sharpe", en: "Sharpe" }, v: { fr: "0,93 vs 0,85", en: "0.93 vs 0.85" } },
-        { k: { fr: "Beta (CAPM)", en: "Beta (CAPM)" }, v: { fr: "1,33", en: "1.33" } },
-        { k: { fr: "Alpha", en: "Alpha" }, v: { fr: "+4,8 % (t = 1,12)", en: "+4.8% (t = 1.12)" } },
+        { k: { fr: "Bêta (CAPM)", en: "Beta (CAPM)" }, v: { fr: "1,33", en: "1.33" } },
+        { k: { fr: "Alpha", en: "Alpha" }, v: { fr: "+4,8 % (t = 1,12)", en: "+4.8% (t = 1.12)" } },
       ],
       note: {
-        fr: "Hors échantillon 2019-2024, net de frais. Le CAPM montre que l'excès de rendement vient du beta ; alpha non significatif.",
+        fr: "Résultats hors échantillon (2019-2024), nets de frais. Le CAPM montre que la surperformance vient surtout du bêta : l'alpha n'est pas significatif.",
         en: "Out-of-sample 2019-2024, net of costs. CAPM shows excess return driven by beta; alpha not significant.",
       },
       link: "https://github.com/antojfr/sp500-quant-scoring",
@@ -170,14 +170,14 @@ const PROFILE = {
     },
     {
       id: "credit",
-      name: { fr: "Scoring de crédit : arbre de décision codé from scratch", en: "Credit scoring: decision tree coded from scratch" },
+      name: { fr: "Scoring de crédit : arbre de décision codé de zéro", en: "Credit scoring: decision tree coded from scratch" },
       dates: { fr: "2024 - 2025", en: "2024 - 2025" },
       description: {
-        fr: "Prédire si un crédit immobilier est accordé à partir du profil du client (revenus, charges, historique). Arbre de décision écrit à la main, sans librairie de modélisation : critères de Gini et d'entropie, gain d'information, choix de la profondeur. Les règles apprises sont lisibles, ce qu'exigent Bâle et le RGPD pour justifier un refus.",
+        fr: "Prédire si un crédit immobilier est accordé à partir du profil du client (revenus, charges, historique). Arbre de décision écrit entièrement à la main, sans librairie de modélisation : critères de Gini et d'entropie, gain d'information, choix de la profondeur. Les règles apprises sont lisibles, ce qu'exigent la réglementation bancaire (Bâle) et le RGPD pour justifier un refus.",
         en: "Predict whether a mortgage is granted from the client's profile (income, expenses, history). Decision tree written by hand, without any modelling library: Gini and entropy criteria, information gain, depth selection. The learned rules are readable, as Basel and GDPR require to justify a refusal.",
       },
       metrics: [
-        { k: { fr: "Précision (jeu de test)", en: "Accuracy (test set)" }, v: { fr: "80,7 %", en: "80.7%" } },
+        { k: { fr: "Précision (jeu de test)", en: "Accuracy (test set)" }, v: { fr: "80,7 %", en: "80.7%" } },
         { k: { fr: "Profondeur optimale", en: "Optimal depth" }, v: "3" },
         { k: { fr: "Règles de décision", en: "Decision rules" }, v: "8" },
         { k: { fr: "Comparé à", en: "Benchmarked against" }, v: "scikit-learn" },
@@ -207,7 +207,7 @@ const PROFILE = {
         chosen: 3,
       },
       note: {
-        fr: "Même profil que scikit-learn : la précision monte puis baisse quand l'arbre devient trop profond (surapprentissage). Mon arbre plafonne vers 81 % à la profondeur 2-3, scikit-learn atteint 86,5 % à la profondeur 5.",
+        fr: "Même profil que scikit-learn : la précision monte puis baisse quand l'arbre devient trop profond (surapprentissage). Mon arbre plafonne vers 81 % à la profondeur 2-3, scikit-learn atteint 86,5 % à la profondeur 5.",
         en: "Same shape as scikit-learn: accuracy rises, then falls when the tree gets too deep (overfitting). My tree peaks around 81% at depth 2-3, scikit-learn reaches 86.5% at depth 5.",
       },
       link: "https://github.com/antojfr/python-descision-tree-from-scratch-for-Immo-credit",
@@ -218,7 +218,7 @@ const PROFILE = {
       name: { fr: "Optimisation des achats d'électricité", en: "Electricity procurement optimisation" },
       dates: { fr: "2024 - 2025", en: "2024 - 2025" },
       description: {
-        fr: "Réseau de neurones pour optimiser le prix d'achat d'électricité de communes d'Occitanie. Projet de l'École des Mines d'Alès.",
+        fr: "Réseau de neurones pour optimiser le prix d'achat de l'électricité de communes d'Occitanie. Projet d'école aux Mines d'Alès.",
         en: "Neural network to optimise electricity purchase prices for municipalities in Occitanie. École des Mines d'Alès project.",
       },
       link: "",
