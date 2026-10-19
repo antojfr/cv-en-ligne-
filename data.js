@@ -60,6 +60,7 @@ const PROFILE = {
     { sym: "TOEIC", val: "885" },
     { sym: "FEATURES", val: "24" },
     { sym: "STOCK-MONTHS", val: "66K" },
+    { sym: "MC VAR. RED.", val: "×22.7K" },
   ],
 
   about: {
@@ -246,6 +247,14 @@ const PROFILE = {
 
   // En cours : ce sur quoi tu travailles en ce moment (à mettre à jour)
   current: [
+    {
+      status: { fr: "Depuis octobre 2026", en: "Since October 2026" },
+      title: { fr: "Options asiatiques sur le pétrole par Monte-Carlo", en: "Monte Carlo pricing of Asian options on oil" },
+      desc: {
+        fr: "Pricer d'options sur prix moyen du WTI (APO), codé de zéro et validé contre les formules exactes. À budget égal, la variable de contrôle géométrique divise la variance par 22 700. Avec le modèle de Schwartz, ignorer le retour à la moyenne surévalue l'option de 13 %. Prochaine étape : calibrer sur la vraie courbe des futures WTI.",
+        en: "Pricer for WTI average price options (APOs), built from scratch and checked against exact formulas. At equal budget, the geometric control variate cuts the variance by 22,700×. In the Schwartz model, ignoring mean reversion overprices the option by 13%. Next step: calibrate on the real WTI futures curve.",
+      },
+    },
     {
       status: { fr: "Prochaine étape", en: "Next step" },
       title: { fr: "Rendre le long-short S&P 500 vraiment neutre au marché", en: "Make the S&P 500 long-short truly market-neutral" },
