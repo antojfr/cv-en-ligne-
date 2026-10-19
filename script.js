@@ -13,6 +13,13 @@ const UI = {
     languages: "Langues",
     interests: "Centres d'intérêt",
     viewCode: "Voir le code sur GitHub",
+    treeTitle: "Règles apprises par l'arbre",
+    depthTitle: "Précision selon la profondeur de l'arbre",
+    depthNote: "Axe horizontal : profondeur. Trait vertical : profondeur retenue (3). Valeurs reprises des figures du dépôt GitHub.",
+    yes: "oui",
+    no: "non",
+    granted: "Accordé",
+    refused: "Refusé",
     forTo: "Pour",
     forLink: "Voir le projet",
     mailSubjectFor: (co) => `Suite au Forum Perspectives : ${co}`,
@@ -52,6 +59,13 @@ const UI = {
     languages: "Languages",
     interests: "Interests",
     viewCode: "View code on GitHub",
+    treeTitle: "Rules learned by the tree",
+    depthTitle: "Accuracy by tree depth",
+    depthNote: "Horizontal axis: depth. Vertical line: chosen depth (3). Values taken from the GitHub repository's figures.",
+    yes: "yes",
+    no: "no",
+    granted: "Granted",
+    refused: "Refused",
     forTo: "For",
     forLink: "See the project",
     mailSubjectFor: (co) => `Following Forum Perspectives: ${co}`,
@@ -158,6 +172,57 @@ function equityChart(c) {
   </figure>`;
 }
 
+// ---------- Arbre de décision (règles apprises) ----------
+function treeHTML(node, ui) {
+  if (node === "ok" || node === "ko") {
+    return `<span class="leaf ${node}">${esc(node === "ok" ? ui.granted : ui.refused)}</span>`;
+  }
+  return `<span class="q">${esc(t(node.q))}</span>
+    <ul>
+      <li><span class="br">${esc(ui.yes)}</span> ${treeHTML(node.yes, ui)}</li>
+      <li><span class="br">${esc(ui.no)}</span> ${treeHTML(node.no, ui)}</li>
+    </ul>`;
+}
+
+function treeFigure(tree, ui) {
+  return `<figure class="chart tree-fig">
+    <figcaption>${esc(ui.treeTitle)}</figcaption>
+    <div class="tree">${treeHTML(tree, ui)}</div>
+  </figure>`;
+}
+
+// ---------- Précision selon la profondeur ----------
+function depthChart(c, ui) {
+  const W = 340, H = 180, L = 30, R = 10, T = 10, B = 24;
+  const lo = 55, hi = 90, n = c.depths.length;
+  const x = (i) => L + (i / (n - 1)) * (W - L - R);
+  const y = (v) => T + (1 - (v - lo) / (hi - lo)) * (H - T - B);
+  const dec = lang === "fr" ? "," : ".";
+  let g = "";
+  for (let v = 60; v <= hi; v += 10) {
+    g += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" class="g"/><text x="${L - 6}" y="${y(v) + 3}" class="ax" text-anchor="end">${v}%</text>`;
+  }
+  c.depths.forEach((d, i) => { g += `<text x="${x(i)}" y="${H - 8}" class="ax" text-anchor="middle">${d}</text>`; });
+  const ci = c.depths.indexOf(c.chosen);
+  g += `<line x1="${x(ci)}" x2="${x(ci)}" y1="${T}" y2="${H - B}" class="mark"/>`;
+  const lines = c.series.map((s) => {
+    const pts = s.values.map((v, i) => (v == null ? null : [x(i), y(v)])).filter(Boolean);
+    const d = pts.map((p, i) => `${i ? "L" : "M"}${p[0].toFixed(1)},${p[1].toFixed(1)}`).join("");
+    const dots = pts.map((p) => `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="2.2" class="d-${s.cls}"/>`).join("");
+    return `<path d="${d}" class="s-${s.cls}"/>${dots}`;
+  }).join("");
+  const pct = lang === "fr" ? " %" : "%";
+  const best = (s) => Math.max(...s.values.filter((v) => v != null)).toFixed(1).replace(".", dec) + pct;
+  return `<figure class="chart">
+    <figcaption>${esc(ui.depthTitle)}</figcaption>
+    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(ui.depthTitle)}">${g}${lines}</svg>
+    <ul class="legend">
+      ${c.series.map((s) => `<li class="k-${s.cls}">${esc(t(s.label))} <b>max ${best(s)}</b></li>`).join("")}
+    </ul>
+    <p class="chart-note">${esc(ui.depthNote)}</p>
+  </figure>`;
+}
+
 function render() {
   const ui = UI[lang];
   document.documentElement.lang = lang;
@@ -222,6 +287,8 @@ function render() {
         <h3>${esc(t(x.name))}</h3>
         <p class="desc">${esc(t(x.description))}</p>
         ${x.chart ? equityChart(x.chart) : ""}
+        ${x.tree ? treeFigure(x.tree, ui) : ""}
+        ${x.depthChart ? depthChart(x.depthChart, ui) : ""}
         ${x.metrics ? `<dl class="metrics">${x.metrics.map((m) => `<div><dt>${esc(t(m.k))}</dt><dd>${esc(t(m.v))}</dd></div>`).join("")}</dl>` : ""}
         ${x.note ? `<p class="fine">${esc(t(x.note))}</p>` : ""}
         <p class="stack">${(x.tags || []).map(esc).join(", ")}</p>

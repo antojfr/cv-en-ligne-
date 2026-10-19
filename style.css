@@ -8,6 +8,7 @@
   --dim: #7b8390;        /* texte secondaire */
   --amber: #e0a33c;      /* libellés, dates */
   --pos: #2fcf78;        /* cotations, disponibilité, actions */
+  --neg: #e5605a;        /* refus (arbre de décision) */
 
   --display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
@@ -436,12 +437,25 @@ h2 {
 .legend { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 3px; font-size: 0.8rem; color: var(--dim); }
 .legend li { display: flex; align-items: center; gap: 8px; }
 .legend li::before { content: ""; width: 14px; height: 2px; flex: none; }
-.legend b { margin-left: auto; font-family: var(--mono); font-weight: 500; font-variant-numeric: tabular-nums; }
+.legend b { white-space: nowrap; margin-left: auto; font-family: var(--mono); font-weight: 500; font-variant-numeric: tabular-nums; }
 .legend .k-top::before { background: var(--pos); }
 .legend .k-top b { color: var(--pos); }
 .legend .k-sp::before { background: var(--amber); }
 .legend .k-sp b { color: var(--amber); }
 .legend .k-ew::before { background: repeating-linear-gradient(90deg, var(--dim) 0 3px, transparent 3px 6px); }
+.chart .mark { stroke: var(--dim); stroke-width: 1; stroke-dasharray: 2 3; }
+
+/* Arbre de décision en liste indentée (lisible sur téléphone) */
+.tree { font-family: var(--mono); font-size: 12px; line-height: 1.5; }
+.tree .q { color: var(--fg); }
+.tree ul { list-style: none; margin: 4px 0 0 6px; padding: 0 0 0 14px; border-left: 1px solid var(--line); display: grid; gap: 4px; }
+.entry .tree li { position: relative; padding-left: 4px; font-size: inherit; line-height: inherit; color: var(--dim); }
+.entry .tree li::before { content: ""; position: absolute; left: -14px; top: 0.75em; width: 12px; border-top: 1px solid var(--line); }
+.tree .br { color: var(--amber); margin-right: 4px; }
+.tree .leaf { display: inline-block; padding: 0 6px; border: 1px solid currentColor; border-radius: 2px; }
+.tree .leaf.ok { color: var(--pos); }
+.tree .leaf.ko { color: var(--neg); }
+
 .chart-note { margin-top: 6px; font-size: 0.72rem; color: var(--dim); }
 
 .entry .fine { margin-top: 8px; font-size: 0.8rem; color: var(--dim); }
