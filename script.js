@@ -149,7 +149,7 @@ function equityChart(c) {
   });
   const end = (s, cls) => `<circle cx="${x(n - 1)}" cy="${y(s[n - 1])}" r="2.6" class="${cls}"/>`;
   const ui = lang === "fr"
-    ? { title: "Performance hors échantillon", top: "Top 20 % (modèle)", sp: "S&P 500", ew: "Univers équipondéré", note: "Base 1 début 2019, avant frais. Courbes reprises de la figure du dépôt GitHub." }
+    ? { title: "Performance hors échantillon", top: "Top 20 % (modèle)", sp: "S&P 500", ew: "Actions à poids égal", note: "Base 1 au début de 2019, avant frais. Courbes reprises de la figure du dépôt GitHub." }
     : { title: "Out-of-sample performance", top: "Top 20% (model)", sp: "S&P 500", ew: "Equal-weight universe", note: "Base 1 at the start of 2019, gross of costs. Curves taken from the GitHub repository's figure." };
 
   return `<figure class="chart">
@@ -209,7 +209,7 @@ function depthChart(c, ui) {
     const dots = pts.map((p) => `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="2.2" class="d-${s.cls}"/>`).join("");
     return `<path d="${d}" class="s-${s.cls}"/>${dots}`;
   }).join("");
-  const pct = lang === "fr" ? " %" : "%";
+  const pct = lang === "fr" ? " %" : "%";
   const best = (s) => Math.max(...s.values.filter((v) => v != null)).toFixed(1).replace(".", dec) + pct;
   return `<figure class="chart">
     <figcaption>${esc(ui.depthTitle)}</figcaption>

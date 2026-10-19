@@ -12,7 +12,7 @@ const SP500 = {
   en: "The project closest to your work: my S&P 500 stock selection model, tested out of sample, with a 0.93 Sharpe net of costs.",
 };
 const CREDIT = {
-  fr: "Pour le risque et la validation de modèles : mon scoring de crédit codé from scratch, aux règles explicables, et la validation walk-forward de mon backtest S&P 500.",
+  fr: "Pour le risque et la validation de modèles : mon scoring de crédit codé de zéro, aux règles lisibles, et la validation walk-forward de mon backtest S&P 500.",
   en: "For risk and model validation: my credit scoring model coded from scratch, with explainable rules, and the walk-forward validation of my S&P 500 backtest.",
 };
 const POWER = {
