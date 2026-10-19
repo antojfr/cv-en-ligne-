@@ -327,8 +327,16 @@ function showLogo(target) {
   if (box.dataset.done) return;
   box.dataset.done = "1";
   const words = target.name.split(/\s+/).filter((w) => /^[A-ZÉ]/.test(w));
+  // Sigle (ABC, KPMG), sinon nom court (SIA), majuscules internes (TotalEnergies → TE), sinon initiales
   const acronym = words.find((w) => /^[A-Z]{2,4}$/.test(w));
-  $("for-initials").textContent = acronym || words.slice(0, 2).map((w) => w[0]).join("");
+  const one = words.length === 1 ? words[0] : "";
+  const caps = one.replace(/[^A-Z]/g, "");
+  const ini = acronym
+    || (one && one.length <= 3 ? one.toUpperCase() : "")
+    || (caps.length >= 2 ? caps.slice(0, 3) : "")
+    || words.slice(0, 2).map((w) => w[0]).join("");
+  $("for-initials").textContent = ini;
+  box.classList.toggle("long", ini.length >= 4);
   // Sources essayées dans l'ordre : fichier local, icône haute résolution du site,
   // puis services d'icônes de Google et DuckDuckGo
   const d = target.domain;
