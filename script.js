@@ -360,6 +360,7 @@ function tryLogo(box, target, sources) {
     // Les icônes génériques (globe 16 px) sont trop petites : source suivante
     if (src !== target.logo && img.naturalWidth < 32) return tryLogo(box, target, sources);
     box.classList.add("has-img");
+    box.classList.toggle("fill", src === target.logo && !!target.logoFill);
     box.prepend(img);
   };
   img.onerror = () => tryLogo(box, target, sources);
