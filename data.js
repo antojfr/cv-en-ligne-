@@ -187,11 +187,35 @@ const PROFILE = {
         { k: { fr: "Précision (jeu de test)", en: "Accuracy (test set)" }, v: { fr: "80,7 %", en: "80.7%" } },
         { k: { fr: "Profondeur optimale", en: "Optimal depth" }, v: "3" },
         { k: { fr: "Règles de décision", en: "Decision rules" }, v: "8" },
-        { k: { fr: "Validation", en: "Validation" }, v: { fr: "= scikit-learn", en: "= scikit-learn" } },
+        { k: { fr: "Comparé à", en: "Benchmarked against" }, v: "scikit-learn" },
       ],
+      // Règles apprises (lecture simplifiée de l'arbre, comme dans le README du dépôt)
+      tree: {
+        q: { fr: "Loyer ≤ 652 € ?", en: "Rent ≤ €652?" },
+        yes: {
+          q: { fr: "Propriétaire ou logement social ?", en: "Homeowner or social housing?" },
+          yes: { q: { fr: "Âge ≤ 31 ans ?", en: "Age ≤ 31?" }, yes: "ok", no: "ko" },
+          no: "ok",
+        },
+        no: {
+          q: { fr: "Propriétaire ou logement social ?", en: "Homeowner or social housing?" },
+          yes: "ko",
+          no: "ok",
+        },
+      },
+      // Précision (%) selon la profondeur, reprise des deux figures du dépôt (valeurs approchées)
+      depthChart: {
+        depths: [1, 2, 3, 4, 5, 6, 7],
+        series: [
+          { cls: "top", label: { fr: "Mon arbre, entropie", en: "My tree, entropy" }, values: [58.0, 81.2, 80.7, 75.3, 79.6, 76.0, 75.5] },
+          { cls: "sp", label: { fr: "Mon arbre, Gini", en: "My tree, Gini" }, values: [58.0, 81.2, 77.4, 76.8, 73.2, 74.2, 63.1] },
+          { cls: "ew", label: { fr: "scikit-learn, entropie", en: "scikit-learn, entropy" }, values: [null, 80.9, 81.2, 82.4, 86.5, 84.5, 84.3] },
+        ],
+        chosen: 3,
+      },
       note: {
-        fr: "Courbes précision / profondeur identiques à celles de scikit-learn. Au-delà de 3 à 4 niveaux, le modèle surapprend.",
-        en: "Accuracy / depth curves match scikit-learn's. Beyond 3 to 4 levels, the model overfits.",
+        fr: "Même profil que scikit-learn : la précision monte puis baisse quand l'arbre devient trop profond (surapprentissage). Mon arbre plafonne vers 81 % à la profondeur 2-3, scikit-learn atteint 86,5 % à la profondeur 5.",
+        en: "Same shape as scikit-learn: accuracy rises, then falls when the tree gets too deep (overfitting). My tree peaks around 81% at depth 2-3, scikit-learn reaches 86.5% at depth 5.",
       },
       link: "https://github.com/antojfr/python-descision-tree-from-scratch-for-Immo-credit",
       tags: ["Python", "NumPy", "pandas"],
