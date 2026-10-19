@@ -358,27 +358,7 @@ h2 {
   margin-bottom: 18px;
 }
 
-/* Chiffres clés à points de conduite */
-.figures { margin: 0; display: grid; gap: 12px; }
-
-.fig { display: flex; align-items: baseline; gap: 8px; }
-.fig dt { flex: 0 1 auto; min-width: 0; font-size: 0.9rem; color: var(--dim); line-height: 1.35; }
-.fig .lead { flex: 1 1 16px; min-width: 16px; border-bottom: 1px dotted var(--line); transform: translateY(-4px); }
-
-.fig dd {
-  margin: 0;
-  flex: none;
-  text-align: right;
-  font-family: var(--mono);
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--pos);
-  font-variant-numeric: tabular-nums;
-}
-
-.fig dd small { display: block; font-size: 0.7rem; font-weight: 400; color: var(--dim); }
-
-.about { margin-top: 24px; max-width: 62ch; }
+.about { margin: 0; max-width: 62ch; }
 
 /* Entrées (expérience, formation, projets) */
 .entries { list-style: none; margin: 0; padding: 0; display: grid; gap: 26px; }

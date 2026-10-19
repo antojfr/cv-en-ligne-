@@ -5,7 +5,6 @@ const UI = {
     addContact: "Ajouter à mes contacts",
     downloadCv: "CV PDF",
     navFigures: "Profil",
-    keyFigures: "Chiffres clés",
     experience: "Expérience",
     education: "Formation",
     projects: "Projets",
@@ -51,7 +50,6 @@ const UI = {
     addContact: "Save to contacts",
     downloadCv: "Résumé",
     navFigures: "Profile",
-    keyFigures: "Key figures",
     experience: "Experience",
     education: "Education",
     projects: "Projects",
@@ -258,15 +256,6 @@ function render() {
   $("lnk-mail").href = mailto();
   $("mail-text").textContent = P.email;
   $("footer").textContent = `${fullName}, ${new Date().getFullYear()}`;
-
-  $("key-figures").innerHTML = (P.keyFigures || [])
-    .map(
-      (f) => `<div class="fig">
-        <dt>${esc(t(f.k))}</dt><span class="lead" aria-hidden="true"></span>
-        <dd>${esc(t(f.v))}${f.ref ? `<small>${esc(t(f.ref))}</small>` : ""}</dd>
-      </div>`
-    )
-    .join("");
 
   $("experience-list").innerHTML = P.experience
     .map((x) => entry({ when: t(x.dates), title: t(x.role), org: x.company, details: t(x.details) }))
