@@ -30,7 +30,7 @@ const PROFILE = {
 
   // Événement : affiché en haut de page et dans l'email pré-rempli.
   event: { fr: "Forum Perspectives", en: "Forum Perspectives" },
-  eventFull: { fr: "Forum Perspectives, 20 octobre 2026", en: "Forum Perspectives, 20 October 2026" },
+  eventFull: { fr: "20 octobre 2026, Lyon", en: "20 October 2026, Lyon" },
 
   title: {
     fr: "Élève ingénieur aux Mines, data science et finance quantitative",

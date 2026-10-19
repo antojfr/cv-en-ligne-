@@ -102,7 +102,8 @@ h1, h2, h3 { margin: 0; font-weight: inherit; }
   color: var(--dim);
 }
 
-.ref { color: var(--amber); }
+.ref { display: flex; align-items: center; gap: 12px; color: var(--amber); }
+.forum-logo { display: block; width: auto; height: 44px; }
 
 .lang { display: flex; gap: 2px; }
 
