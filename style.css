@@ -146,6 +146,8 @@ h1, h2, h3 { margin: 0; font-weight: inherit; }
   color: var(--amber);
 }
 
+.for-logo.long { font-size: 12px; }
+
 /* Les logos sont prévus pour un fond clair */
 .for-logo.has-img { background: #fff; border-color: #fff; padding: 6px; }
 .for-logo.has-img > span { display: none; }
