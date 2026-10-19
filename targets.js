@@ -4,6 +4,7 @@
  * - "msg" : phrase affichée en haut de page, sous « Pour <nom> »
  * - "domain" : site de l'entreprise, sert à afficher son logo
  * - "logo" (optionnel) : fichier dans assets/logos/, prioritaire sur le logo du site
+ * - "logoFill" (optionnel) : le logo a son propre fond et remplit toute la tuile
  * Ajouter une entreprise = ajouter une ligne ici.
  */
 const SP500 = {
@@ -21,17 +22,17 @@ const POWER = {
 
 const TARGETS = [
   // À voir absolument
-  { id: "abc", domain: "abc-arbitrage.com", name: "ABC Arbitrage", focus: "sp500", msg: SP500 },
-  { id: "sg", domain: "societegenerale.com", name: "Société Générale", focus: "sp500", msg: SP500 },
+  { id: "abc", logo: "assets/logos/abc.png", logoFill: true, domain: "abc-arbitrage.com", name: "ABC Arbitrage", focus: "sp500", msg: SP500 },
+  { id: "sg", logo: "assets/logos/sg.png", domain: "societegenerale.com", name: "Société Générale", focus: "sp500", msg: SP500 },
   {
-    id: "murex", domain: "murex.com", name: "Murex", focus: "sp500",
+    id: "murex", logo: "assets/logos/murex.png", domain: "murex.com", name: "Murex", focus: "sp500",
     msg: {
       fr: "Pour vos équipes pricing et risque : le moteur de pricing que j'ai construit chez Thales, et mon backtest S&P 500 testé hors échantillon.",
       en: "For your pricing and risk teams: the pricing engine I built at Thales, and my S&P 500 backtest tested out of sample.",
     },
   },
-  { id: "neoen", domain: "neoen.com", name: "Neoen", focus: "power", msg: POWER },
-  { id: "nexialog", domain: "nexialog.com", name: "Nexialog Consulting", focus: "credit", msg: CREDIT },
+  { id: "neoen", logo: "assets/logos/neoen.png", domain: "neoen.com", name: "Neoen", focus: "power", msg: POWER },
+  { id: "nexialog", logo: "assets/logos/nexialog.png", domain: "nexialog.com", name: "Nexialog Consulting", focus: "credit", msg: CREDIT },
   { id: "fincley", domain: "fincley.com", name: "Fincley Consulting", focus: "sp500", msg: SP500 },
 
   // Intéressant
