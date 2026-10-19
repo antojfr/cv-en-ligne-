@@ -43,13 +43,6 @@ const PROFILE = {
     en: "I am looking for a 6-month internship abroad in financial markets or quantitative modelling, starting March 2027.",
   },
 
-  // Chiffres clés : affichés comme le tableau d'une fiche de fonds
-  keyFigures: [
-    { k: { fr: "Erreur de prédiction vs méthode en place (Thales)", en: "Prediction error vs incumbent method (Thales)" }, v: { fr: "-12,1 %", en: "-12.1%" } },
-    { k: { fr: "Sharpe hors échantillon, net de frais", en: "Out-of-sample Sharpe, net of costs" }, v: { fr: "0,93", en: "0.93" }, ref: { fr: "S&P 500 : 0,85", en: "S&P 500: 0.85" } },
-    { k: { fr: "Équipe dirigée en Junior-Entreprise", en: "Team led at the Junior Enterprise" }, v: "13" },
-  ],
-
   // Bandeau défilant façon cotations (▲ hausse, ▼ baisse : valeur commençant par « - »)
   ticker: [
     { sym: "SHARPE", val: "0.93" },
