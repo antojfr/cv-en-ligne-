@@ -49,6 +49,7 @@ Chaque lien affiche en haut de page « Pour <entreprise> » avec un message adap
 | Exiom Partners | https://antojfr.github.io/cv-en-ligne-/?for=exiom |
 | KPMG | https://antojfr.github.io/cv-en-ligne-/?for=kpmg |
 | EY | https://antojfr.github.io/cv-en-ligne-/?for=ey |
+| Forvis Mazars | https://antojfr.github.io/cv-en-ligne-/?for=forvismazars |
 | Wavestone | https://antojfr.github.io/cv-en-ligne-/?for=wavestone |
 | Sia | https://antojfr.github.io/cv-en-ligne-/?for=sia |
 | Accenture | https://antojfr.github.io/cv-en-ligne-/?for=accenture |
