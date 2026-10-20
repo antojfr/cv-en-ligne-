@@ -41,6 +41,7 @@ const TARGETS = [
   { id: "exiom", domain: "exiom-partners.com", name: "Exiom Partners", focus: "credit", msg: CREDIT },
   { id: "kpmg", logo: "assets/logos/kpmg.png", domain: "kpmg.com", name: "KPMG", focus: "credit", msg: CREDIT },
   { id: "ey", logo: "assets/logos/ey.png", logoFill: true, domain: "ey.com", name: "EY", focus: "credit", msg: CREDIT },
+  { id: "forvismazars", domain: "forvismazars.com", name: "Forvis Mazars", focus: "credit", msg: CREDIT },
   { id: "wavestone", domain: "wavestone.com", name: "Wavestone", focus: "sp500", msg: SP500 },
   { id: "sia", domain: "sia-partners.com", name: "Sia", focus: "credit", msg: CREDIT },
   { id: "accenture", domain: "accenture.com", logo: "assets/logos/accenture.svg", name: "Accenture", focus: "sp500", msg: SP500 },
