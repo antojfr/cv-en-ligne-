@@ -186,12 +186,12 @@ const PROFILE = {
       tree: {
         q: { fr: "Loyer ≤ 652 € ?", en: "Rent ≤ €652?" },
         yes: {
-          q: { fr: "Propriétaire ou logement social ?", en: "Homeowner or social housing?" },
+          q: { fr: "Locataire ou logé par la famille ?", en: "Renting or living with family?" },
           yes: { q: { fr: "Âge ≤ 31 ans ?", en: "Age ≤ 31?" }, yes: "ok", no: "ko" },
           no: "ok",
         },
         no: {
-          q: { fr: "Propriétaire ou logement social ?", en: "Homeowner or social housing?" },
+          q: { fr: "Locataire ou logé par la famille ?", en: "Renting or living with family?" },
           yes: "ko",
           no: "ok",
         },
